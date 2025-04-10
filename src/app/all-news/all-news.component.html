@@ -1,0 +1,25 @@
+<div *ngIf="newsList.length > 0" id="newsCarousel" class="carousel slide allnews" data-bs-ride="carousel">
+    <h2 class="text-center "><strong>Trending News</strong></h2>
+    <div class="carousel-inner">
+      <div *ngFor="let news of newsList; let first = first" class="carousel-item" [class.active]="first">
+        <div class="carousel-image-container">
+          <img [src]="news.newsImage" class="d-block w-100 news-image" alt="News Image">
+          <div class="carousel-title">
+            <h5>{{ news.title }}</h5>
+          </div>
+        </div>
+        <div class="carousel-content">
+          <p>{{ news.content }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  

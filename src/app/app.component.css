@@ -1,0 +1,89 @@
+/* Navbar Flexbox */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background-color: #3da2d1;
+    color: white;
+    position: relative; /* Added to ensure proper alignment */
+  }
+  
+  /* Push elements apart */
+  .spacer {
+    flex: 1;
+  }
+  
+  /* Hide mobile menu button by default */
+  .menu-button {
+    display: none;
+  }
+  
+  /* Default navigation links */
+  .nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center; /* Ensure items are aligned properly */
+  }
+  
+  /* Notification button */
+  button.mat-icon-button {
+    position: relative; /* Ensures notification badge is positioned correctly */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .menu-button {
+      display: block;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px; /* Adjust based on mat-toolbar height */
+      right: 10px;
+      background: #1976d2;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+  
+    /* Show menu when opened */
+    .nav-links.open {
+      display: flex;
+    }
+  
+    /* Make buttons full-width on mobile */
+    button {
+      width: 100%;
+      text-align: left;
+    }
+  }
+  
+  .home-link {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 18px; /* Set width */
+    height: 18px; /* Set height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 0; 
+  }
+  
+  .full-height-layout {
+    display: flex;
+    min-height: 100vh; /* Full viewport height */
+  }
+  

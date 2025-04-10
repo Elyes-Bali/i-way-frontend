@@ -1,0 +1,56 @@
+<div class="main-content">
+  <div id="page-content-wrapper">
+    <div class="news-container">
+      <h2>Manage News</h2>
+
+      <!-- Form to Add News -->
+      <div class="news-form">
+        <input
+          type="text"
+          placeholder="Title"
+          [(ngModel)]="newTitle"
+          required
+        />
+        <textarea
+          placeholder="Content"
+          [(ngModel)]="newContent"
+          required
+        ></textarea>
+        <button type="button" class="btn btn-primary mb-5" (click)="fileInput.click()">Choose a Picture</button>
+        <input
+          type="file"
+          class="form-control-file myimage"
+          id="image"
+          #fileInput
+          (change)="onFileSelected($event)"
+          style="display: none;"
+        />
+        <!-- <input type="file" (change)="onFileSelected($event)" /> -->
+        <button class="add-button" (click)="addNews()" [disabled]="isLoading">
+          {{ isLoading ? "Adding..." : "Add News" }}
+        </button>
+      </div>
+
+      <hr />
+
+      <!-- Display News in Grid -->
+      <div class="news-list">
+        <h2>Latest News</h2>
+        <div class="news-grid">
+          <div *ngFor="let news of newsList" class="news-item">
+            <h4><b>{{ news.title }}</b></h4>
+            <p>{{ news.content }}</p>
+            <img
+              *ngIf="news.newsImage"
+              [src]="news.newsImage"
+              alt="News Image"
+            />
+            <div class="news-actions">
+              <button (click)="deleteNews(news.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

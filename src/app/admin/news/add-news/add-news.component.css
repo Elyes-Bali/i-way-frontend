@@ -1,0 +1,93 @@
+/* Container Styling */
+.news-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* News Form */
+  .news-form input,
+  .news-form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .add-button {
+    width: 100%;
+    padding: 10px;
+    background: #16b13d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .news-form button:disabled {
+    background: gray;
+  }
+  
+  /* Grid Layout for News Items */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive Grid */
+    gap: 20px; /* Space between cards */
+    margin-top: 20px;
+  }
+  
+  /* News Card */
+  .news-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is spaced out */
+    height: 100%; /* Ensure the item expands to fit its container */
+  }
+  
+  .news-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .news-item img {
+    width: 100%;
+    height: 180px; /* Fixed height for consistency */
+    object-fit: cover; /* Crop image nicely */
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Delete Button */
+  .news-actions {
+    margin-top: 10px;
+  }
+  
+  .news-actions button {
+    background: red;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .news-actions button:hover {
+    background: darkred;
+  }
+  
+  .main-content {
+    margin-left: 250px; /* Same as sidebar width */
+    width: calc(100% - 250px);
+    transition: margin-left 0.3s;
+}
+  

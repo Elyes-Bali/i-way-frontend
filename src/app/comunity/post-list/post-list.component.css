@@ -1,0 +1,346 @@
+/* Adjusting the .community-container for spacing */
+.community-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1700px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    margin-top: 60px; /* Adjust this based on your navbar height */
+
+}
+
+.sidebar {
+    width: 20%;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    position: fixed; /* Fix sidebar in place */
+    top: 65px; /* Push sidebar below navbar, adjust based on navbar height */
+    bottom: 20px; /* Ensures sidebar stays within the page bounds */
+    
+}
+
+.activity-feed {
+    width: 55%;
+    margin-left: 25%; /* Offset content to avoid overlap with the left sidebar */
+    margin-right: 20%; /* Offset content to avoid overlap with the right sidebar */
+    padding-right: 20px; /* Add some space on the right */
+   
+}
+
+.right-sidebar {
+    width: 20%;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    position: fixed; /* Fix sidebar in place */
+    top: 65px; /* Push sidebar below navbar, adjust based on navbar height */
+    right: 0; /* Align to the right of the page */
+    bottom: 20px; /* Ensures sidebar stays within the page bounds */
+}
+
+.new-post textarea {
+    width: 100%;
+    height: 90px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.new-post button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comments img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.post-actions button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.likes {
+    font-size: 14px;
+    color: gray;
+}
+
+.avatars img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 5px;
+    object-fit: cover;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.delete-comment {
+    background: none;
+    border: none;
+    color: #FF6B6B;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+
+.delete-comment:hover {
+    color: #e60000;
+    text-decoration: underline;
+}
+
+.comment-input textarea {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: none;
+    height: 60px;
+    transition: border-color 0.3s ease;
+}
+
+.comment-input textarea:focus {
+    border-color: #2196F3;
+    outline: none;
+}
+
+.comments {
+    margin-top: 20px;
+    padding-left: 12px;
+    border-left: 3px solid #eee;
+    font-size: 14px;
+    max-height: 200px; 
+    overflow-y: auto;
+}
+
+.comment {
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #444;
+   
+}
+
+.profile-picture img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.postimage img {
+    margin-left: 25% !important;
+    width: 50% !important;
+}
+
+.username{
+    text-align: center;
+}
+
+.post-content button {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    /* background-color: #007bff; */
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: underline;
+}
+
+.post-content p {
+    font-size: 18px
+}
+
+/* New post container using flex */
+.new-post {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Space between elements */
+  }
+  
+  /* Ensure the buttons are in the same line */
+  .new-post .button-container {
+    display: flex; 
+    justify-content: flex-start; /* Align to the left side */
+    gap: 20px; /* Space between the buttons */
+    align-items: center; /* Vertically center the buttons */
+  }
+  
+  /* Styling for Post button */
+  .new-post button {
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center; /* Ensure text is aligned */
+  }
+  
+  /* Style the custom file input */
+  .custom-file-input input[type="file"] {
+    display: none; /* Hide the default file input */
+  }
+  
+  .custom-file-input .file-upload-label {
+    margin-top: 8px !important;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d3d4d4;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .custom-file-input .file-upload-label:hover {
+    background-color: #979797;
+  }
+  
+/* Save Post Icon */
+.save-post-icon {
+    display: flex;
+    
+    font-size: 20px;
+    color: #7a7a7a; /* Green color */
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .save-post-icon:hover {
+    color: #218838; /* Darker green on hover */
+  }
+  
+  /* Remove Post Icon */
+  .remove-post-icon {
+    font-size: 20px;
+    color: #218838; /* Red color */
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .remove-post-icon:hover {
+    color: #c82333; /* Darker red on hover */
+  }
+  
+  /* Optional: Add margin between icons */
+  .post-header i {
+    margin-right: 10px;
+  }
+  
+  .savedposts{
+   padding-left: 70% !important;
+  }
+
+  .image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background: rgba(117, 117, 117, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .full-image {
+    max-width: 70vw; /* Up to 90% of viewport width */
+    max-height: 70vh; /* Up to 90% of viewport height */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+  }
+  
+  .image-modal:hover {
+    cursor: pointer;
+    transform: scale(1.2); 
+  }
+  
+
+  /* Loader styles */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .spinner {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue color */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Add spinning animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+
+
+  
+  .latest-updates{
+    font-size: 18px;
+  }
+
+  .fa-heart{
+    color: red;
+  }
+
+  .bi-chat-left-dots-fill{
+    color: #3498db;
+  }
+

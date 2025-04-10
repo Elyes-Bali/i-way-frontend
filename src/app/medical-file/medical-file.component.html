@@ -1,0 +1,119 @@
+<div class="medical-file-form">
+  <div class="pulse-circle"></div>
+  <h2>Medical File</h2>
+
+  <!-- Medical File Form -->
+  <div *ngIf="medicalFile">
+    <!-- Personal Information Section -->
+    <div class="form-section">
+      <h3>Personal Information</h3>
+      <div class="form-group">
+        <label for="bloodType">Blood Type</label>
+        <input
+          id="bloodType"
+          type="text"
+          [(ngModel)]="medicalFile.bloodType"
+          placeholder="Enter the patient's blood type"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="height">Height (cm)</label>
+        <input
+          id="height"
+          type="number"
+          [(ngModel)]="medicalFile.height"
+          placeholder="Enter the patient's height"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="weight">Weight (Kg)</label>
+        <input
+          id="weight"
+          type="number"
+          [(ngModel)]="medicalFile.weight"
+          placeholder="Enter the patient's weight"
+        />
+      </div>
+    </div>
+
+    <!-- Visit Information Section -->
+    <div class="form-section">
+      <h3>Visit Information</h3>
+      <div class="form-group">
+        <label for="reasons">Purpose of the Visit <span class="required">*</span></label>
+        <textarea
+          id="reasons"
+          [(ngModel)]="medicalFile.reasons"
+          placeholder="Enter the purpose of the visit"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="symptoms">Symptoms <span class="required">*</span></label>
+        <textarea
+          id="symptoms"
+          [(ngModel)]="medicalFile.symptoms"
+          placeholder="Describe the symptoms"
+          required
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Medication History Section -->
+    <div class="form-section">
+      <h3>Medication History</h3>
+      <div class="form-group">
+        <label for="previousMedication">Previous Medication</label>
+        <textarea
+          id="previousMedication"
+          [(ngModel)]="medicalFile.previousMedication"
+          placeholder="Enter previous medications taken by the patient"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="prescriptions">Prescriptions <span class="required">*</span></label>
+        <textarea
+          id="prescriptions"
+          [(ngModel)]="medicalFile.prescriptions"
+          placeholder="Enter prescribed medications"
+          required
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Additional Notes Section -->
+    <div class="form-section">
+      <h3>Additional Notes</h3>
+      <div class="form-group">
+        <label for="additionalNotes">Additional Notes</label>
+        <textarea
+          id="additionalNotes"
+          [(ngModel)]="medicalFile.additionalNotes"
+          placeholder="Any additional notes"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Save/Update Button -->
+    <div class="button-container">
+      <button
+        *ngIf="testMedicalFiles.length == 0"
+        class="save-button"
+        (click)="saveMedicalFile()"
+      >
+        Save
+      </button>
+      <button
+        *ngIf="testMedicalFiles.length != 0"
+        class="save-button"
+        (click)="updateMedicalFile()"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>

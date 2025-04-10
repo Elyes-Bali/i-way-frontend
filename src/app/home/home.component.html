@@ -1,0 +1,146 @@
+<header class="hero">
+  <div class="container">
+    <span class="tagline">Modern Healthcare Solutions</span>
+    <h1><span class="highlight">Your Health,</span> Our Priority</h1>
+    <p>
+      Experience world-class healthcare with our team of expert doctors and
+      state-of-the-art facilities.
+    </p>
+    <div
+      class="cta-buttons"
+      *ngIf="isPatientLoggedIn || isDoctorLoggedIn || isPharmacyLoggedIn"
+    >
+      <a href="/appointment" class="btn btn-primary">Get Started →</a>
+      <a href="/aboutus" class="btn btn-secondary">Learn More</a>
+    </div>
+    <div
+      class="cta-buttons"
+      *ngIf="!isPatientLoggedIn && !isDoctorLoggedIn && !isPharmacyLoggedIn"
+    >
+      <a href="/login" class="btn btn-primary">LogIn →</a>
+      <a href="/aboutus" class="btn btn-secondary">Learn More</a>
+    </div>
+    <div class="stats">
+      <div class="stat-card">
+        <i class="icon-rating"></i>
+        <h4>4.9</h4>
+        <p>User Rating</p>
+      </div>
+      <div class="stat-card">
+        <i class="icon-clock"></i>
+        <h4>24/7</h4>
+        <p>Available</p>
+      </div>
+      <div class="stat-card">
+        <i class="icon-users"></i>
+        <h4>10k+</h4>
+        <p>Patients</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="services" class="section text-center">
+  <h2>Our Services</h2>
+  <p>Providing top-quality healthcare services to meet your needs.</p>
+  <div class="container">
+    <div class="service-card">
+      <h4>Online Booking</h4>
+      <p>Schedule appointments with ease.</p>
+    </div>
+    <div class="service-card">
+      <h4>Telemedicine</h4>
+      <p>Consult with doctors remotely.</p>
+    </div>
+    <div class="service-card">
+      <h4>Specialist Care</h4>
+      <p>Find top specialists in various fields.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" class="section bg-light text-center">
+  <h2>How It Works</h2>
+  <div class="container">
+    <div class="service-card">
+      <h4>Search a Doctor</h4>
+      <p>Find the right doctor for your needs.</p>
+    </div>
+    <div class="service-card">
+      <h4>Book an Appointment</h4>
+      <p>Choose a convenient time slot.</p>
+    </div>
+    <div class="service-card">
+      <h4>Get Consultation</h4>
+      <p>Meet the doctor and receive expert advice.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why-choose-us" class="three-d-section">
+  <h2>Why Choose Us?</h2>
+  <div class="three-d-container">
+    <div class="three-d-card">
+      <h4>Expert Doctors</h4>
+      <p>Highly qualified professionals at your service.</p>
+    </div>
+    <div class="three-d-card">
+      <h4>Advanced Technology</h4>
+      <p>Cutting-edge medical solutions for your health.</p>
+    </div>
+    <div class="three-d-card">
+      <h4>24/7 Support</h4>
+      <p>Round-the-clock assistance for all your needs.</p>
+    </div>
+  </div>
+</section>
+
+<div>
+  <section
+    *ngIf="!isPatientLoggedIn && !isDoctorLoggedIn && !isPharmacyLoggedIn"
+  >
+    <div class="container my-5 py-5">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="../../assets/imgs/phar.jpg" alt="About" class="w-75" />
+        </div>
+        <div class="col-md-6 mt-5">
+          <h3 class="fs-5">Join Us</h3>
+          <h1 class="display-6">Add Your <b>Pharmacy</b></h1>
+          <hr />
+          <p class="lead mb-4">
+            Do you have a Pharmacy and looking to connect with more patients?
+            Join our platform and expand your reach.
+          </p>
+
+          <a
+            class="btn btn-primary rounded-pill px-4 py-2 ms-2"
+            href="/pharmacy-signup"
+          >
+            Register Your Pharmacy
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section
+  id="join-us"
+  class="join-us-section text-center"
+  *ngIf="!isPatientLoggedIn && !isDoctorLoggedIn && !isPharmacyLoggedIn"
+>
+  <h2>Join Us as a Doctor</h2>
+  <p>
+    Are you a medical professional looking to connect with more patients? Join
+    our platform and expand your reach.
+  </p>
+  <a href="/doctor-signup" class="btn btn-primary btn-lg"
+    >Register as a Doctor</a
+  >
+</section>
+
+
+<footer class="text-center p-3 bg-dark text-white">
+  <p>&copy; 2025 Medical Appointments. All Rights Reserved.</p>
+</footer>

@@ -1,0 +1,206 @@
+<div class="community-container">
+  <!-- Sidebar -->
+  <aside class="sidebar ">
+    <div class=" ">
+    <section class="blog">
+      
+      <div class="profile-picture mt-2">
+        <img
+          [src]="
+            userDetails.imgUrl
+              ? userDetails.imgUrl
+              : '../../assets/imgs/user.png'
+          "
+          alt="Profile Picture"
+        />
+      </div>
+    </section>
+
+    <section class="username">
+      <h3>
+        <strong>{{ userDetails.name }}</strong><br/>
+        <strong>{{ userDetails.speciality }}</strong>
+      </h3>
+    </section>
+
+    <section class="news">
+      <app-all-news></app-all-news>
+    </section>
+   
+  </div>
+  </aside>
+
+  <!-- Main Feed -->
+  <main class="activity-feed">
+    <div class="new-post" *ngIf="isDoctorLoggedIn">
+      <textarea
+        [(ngModel)]="newPostContent"
+        placeholder="Write a new post..."
+      ></textarea>
+
+      <!-- Button container -->
+      <div class="button-container">
+        <!-- Custom file input with icon -->
+        <div class="custom-file-input">
+          <label for="file-upload" class="file-upload-label">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-image"
+              viewBox="0 0 16 16"
+            >
+              <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+              <path
+                d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"
+              />
+            </svg>
+          </label>
+          <input
+            type="file"
+            id="file-upload"
+            (change)="onImageSelected($event)"
+            accept="image/*"
+          />
+        </div>
+
+        <!-- Post button -->
+        <button (click)="createPost()">Post</button>
+      </div>
+
+      <div *ngIf="isLoading" class="loader">
+        <p>Creating Post...</p>
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <div *ngFor="let post of posts" class="post-card pt-4">
+      <div class="post-header">
+        <img
+          *ngIf="post.authorid"
+          [src]="getDoctorImage(post.authorid)"
+          alt="Doctor Avatar"
+        />
+        <p>
+          <strong>{{ post.author }}</strong> posted on
+          {{ post.createdDate | date : "short" }}
+        </p>
+        <!-- Save Post Icon -->
+         <div class="savedposts">
+        <i
+          *ngIf="!isPostSaved(post.id)"
+          class="save-post-icon fas fa-bookmark"
+          (click)="savePost(post)"
+          title="Save Post"
+        ></i>
+
+        <!-- Remove Post Icon -->
+        <i
+          *ngIf="isPostSaved(post.id)"
+          class="remove-post-icon fas fas fa-bookmark"
+          (click)="removeSavedPost(post)"
+          title="Remove Post"
+        ></i>
+      </div>
+      </div>
+
+      <!-- Display post content with read more functionality -->
+      <div class="post-content">
+        <!-- Display Truncated Content -->
+        <p *ngIf="!post.showFullContent" [innerHTML]="getFormattedContent(getTruncatedContent(post.content))"></p>
+      
+        <!-- Display Full Content -->
+        <p *ngIf="post.showFullContent" [innerHTML]="getFormattedContent(post.content)"></p>
+      
+        <!-- Show the Read More / Show Less Button -->
+        <button *ngIf="post.content.length > 500" (click)="toggleReadMore(post)">
+          {{ post.showFullContent ? "Show Less" : "Read More" }}
+        </button>
+      </div>
+      
+
+      <div class="postimage" *ngIf="post.postImage">
+        <img 
+          [src]="post.postImage" 
+          alt="Image Preview" 
+          class="image-preview" 
+          (click)="openImageModal(post.postImage)"
+        />
+      </div>
+      
+      <!-- Image Modal -->
+      <div class="image-modal" *ngIf="selectedPhoto" (click)="closeImageModal()">
+        <img [src]="selectedPhoto" alt="Full Image" class="full-image" />
+      </div>
+      
+
+      <div class="comments" [ngStyle]="{'max-height': post.comments.length > 3 ? '200px' : 'auto', 'overflow-y': post.comments.length > 3 ? 'auto' : 'unset'}">
+        <div *ngFor="let comment of post.comments" class="comment">
+          <p>
+            <strong>{{ comment.author }}:</strong> {{ comment.content }}
+          </p>
+          <button
+            class="delete-comment"
+            *ngIf="comment.authorid === authorId"
+            (click)="deleteComment(comment.id, post.id)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      
+      <!-- Comment textarea outside the scrollable comments section -->
+      <div class="comment-input" *ngIf="isDoctorLoggedIn">
+        <textarea
+          [(ngModel)]="commentContent[post.id]"
+          placeholder="Add a comment..."
+        ></textarea>
+      </div>
+      
+      
+
+      <div class="post-actions">
+        <button (click)="likePost(post.id)">Like</button>
+        <button *ngIf="isDoctorLoggedIn" (click)="addComment(post.id)">Comment</button>
+        <button
+          *ngIf="post.authorid === authorId"
+          (click)="deletePost(post.id)"
+        >
+          Delete Post
+        </button>
+      </div>
+
+      <div class="likes">
+        <p><i class="fa fa-heart" aria-hidden="true"></i> {{ post.likes.length }}   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+          <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+        </svg> {{ post.comments.length }} </p>
+ 
+      </div>
+    </div>
+  </main>
+
+  <!-- Right Sidebar -->
+  <aside class="sidebar right-sidebar">
+    <section class="latest-updates">
+      <h3><strong>Doctors Community</strong></h3>
+      <p>Welcome to the Doctors Community, a space where you can share your research, achievements, and collaborate with other healthcare professionals to advance medical knowledge and patient care.</p>
+    </section>
+    
+    
+
+    <section class="active-members mt-4">
+      <h3><strong>Most Active Members</strong></h3>
+      <div class="avatars">
+        <!-- Loop through the active users and display their avatars -->
+        <div *ngFor="let user of activeUsers" class="avatar">
+          <img [src]="user.imgUrl ? user.imgUrl : '../../assets/imgs/user.png'" alt="{{ user.name }}'s Avatar" />
+          <p><strong>{{ user.name }}</strong></p>
+          <p><strong>Speaciality: </strong>{{ user.speciality }}</p>
+          <!-- <p><strong>Contact Email:</strong> {{ user.eaddress }}</p> -->
+        </div>
+      </div>
+    </section>
+    
+  </aside>
+</div>

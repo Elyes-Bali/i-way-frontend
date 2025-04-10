@@ -1,0 +1,108 @@
+<div class="profile-settings-wrapper">
+  <app-doc-sidebar></app-doc-sidebar>
+  <div class="container profile-main">
+    <div class="row">
+      <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary mb-4">Set Your Availability</h2>
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> Select Day:</label>
+          <select class="form-control" [(ngModel)]="availability.dayOfWeek">
+            <option
+              *ngFor="
+                let day of [
+                  'Monday',
+                  'Tuesday',
+                  'Wednesday',
+                  'Thursday',
+                  'Friday',
+                  'Saturday',
+                  'Sunday'
+                ]
+              "
+              [value]="day"
+            >
+              {{ day }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label><i class="fas fa-clock"></i> Start Time:</label>
+              <input
+                type="time"
+                class="form-control"
+                [(ngModel)]="availability.startTime"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label><i class="fas fa-clock"></i> End Time:</label>
+              <input
+                type="time"
+                class="form-control"
+                [(ngModel)]="availability.endTime"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mb-2">
+          <button
+            class="btn btn-primary btn-lg px-4 mt-3"
+            (click)="setAvailability()"
+          >
+            <i class="fas fa-save"></i> Save Availability
+          </button>
+        </div>
+        <!-- Success Message -->
+        <div
+          *ngIf="showSuccessMessage"
+          class="alert alert-success text-center fade-in"
+        >
+          <i class="fas fa-check-circle"></i> Availability updated successfully!
+        </div>
+
+        <!-- Error Message -->
+        <div
+          *ngIf="errorMessage"
+          class="alert alert-danger text-center fade-in"
+        >
+          <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+        </div>
+      </div>
+
+      <!-- Availability List -->
+      <div class="card shadow-lg p-4 mt-4">
+        <h3 class="text-primary text-center mb-3">Your Availability</h3>
+        <table class="table table-striped">
+          <thead class="bg-primary text-white">
+            <tr>
+              <th>Day</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of availabilityList">
+              <td>{{ slot.dayOfWeek }}</td>
+              <td>{{ slot.startTime }}</td>
+              <td>{{ slot.endTime }}</td>
+              <td>
+                <button
+                  class="btn btn-danger btn-md"
+                  (click)="deleteAvailability(slot.id)"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

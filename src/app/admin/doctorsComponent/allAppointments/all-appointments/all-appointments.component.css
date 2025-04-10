@@ -1,0 +1,194 @@
+/* General Layout */
+.profile-settings-container {
+  display: flex;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #ffffff, #f4f7fc);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.sidebar ul li.active,
+.sidebar ul li:hover {
+  background: rgba(173, 216, 230, 0.5);
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.header {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  padding-bottom: 20px;
+}
+
+/* Table Container */
+.table-container {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Table */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.styled-table th {
+  background: linear-gradient(135deg, #007bff, #3c78e7);
+  color: white;
+  padding: 14px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.styled-table td {
+  padding: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Row Hover Effect */
+.styled-table tbody tr:hover {
+  background: rgba(200, 230, 255, 0.3);
+  transition: background 0.3s ease-in-out;
+}
+
+/* Alternating Row Colors */
+.styled-table tbody tr:nth-child(even) {
+  background: rgba(240, 248, 255, 0.4);
+}
+
+/* Patient Info */
+.patient-info {
+  display: flex;
+  align-items: center;
+}
+
+.patient-info .avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 12px;
+  border: 2px solid #ddd;
+}
+
+.doctor-name {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.doctor-email {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Status Labels */
+.status {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.status-accepted {
+  background: rgba(39, 174, 96, 0.2);
+  color: #27ae60;
+}
+
+.status-rejected {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+}
+
+.status-pending {
+  background: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.accept-btn {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+}
+
+.reject-btn {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.file-btn {
+  background: linear-gradient(135deg, #3c78e7, #1f55bb);
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Pagination */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.pagination-controls button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

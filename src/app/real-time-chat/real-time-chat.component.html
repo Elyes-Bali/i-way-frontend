@@ -1,0 +1,91 @@
+<div class="chat-container">
+  <div class="user-list">
+    <h3>Select a user</h3>
+    <ul>
+      <li *ngFor="let user of allUsers" (click)="selectReceiver(user)">
+        <div class="profile-picture">
+        <img src="{{ user.imgUrl }}" alt="Profile Picture" />
+       
+       <b>{{ user.name }}</b>
+        <!-- <div class="user-number">
+          +216{{ user.number }}
+        </div> -->
+      </div>
+      </li>
+      <div *ngIf="appointmentsMessage" class="no-appointments-message">
+        <p>{{ appointmentsMessage || "Loading appointments..." }}</p>
+      </div>
+    </ul>
+  </div>
+<div *ngIf="!receiver" class="warning-message">
+    <h3>Select a user to start chatting</h3>
+    <p>Once you select a user, you can start sending messages.</p>
+  </div>
+
+  <div *ngIf="receiver" class="chat-box">
+    <div class="right-panel-header">
+    <h3 class="right-panel-header-title" id="receiver-name">Chat with {{ receiver }}</h3>
+    <!-- Video call section -->
+    <!-- <div *ngIf="!isInCall">
+
+      <button (click)="startVideoCall()" class="call-btn">Start Call</button>
+    </div>
+    <div class="video-call-container" *ngIf="isInCall">
+      <div class="video-container">
+        <video id="local-video" autoplay muted></video>
+        <video id="remote-video" autoplay></video>
+      </div>
+      <button (click)="endCall()">End Call</button>
+    </div> -->
+
+  </div>
+    <div class="messages">
+      <div
+        *ngFor="let message of chatMessages"
+        class="message"
+        [ngClass]="{
+          sent: message.senderId === senderId,
+          received: message.senderId !== senderId
+        }"
+      >
+        <div *ngIf="message.senderId === senderId" class="sent-message">
+          <div
+            class="message-wrapper"
+            [class.show-options]="messageOptions[message.id]"
+          >
+            <!-- Toggle Button -->
+            <span class="menu-icon" (click)="toggleOptions(message.id)"
+              >&#8942;</span
+            >
+
+            <!-- Message Content -->
+            <div><strong>You:</strong> {{ message.message }}</div>
+
+            <!-- Delete Button -->
+            <button
+              *ngIf="messageOptions[message.id]"
+              class="delete-btn"
+              (click)="deleteMessage(message.id)"
+            >
+              <i class="fa fa-minus-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="message.senderId !== senderId" class="received-message">
+          <strong>{{ message.senderName || message.sender }}:</strong>
+          {{ message.message }}<br />
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <input
+        [(ngModel)]="newMessage"
+        placeholder="Type a message"
+        (keyup.enter)="sendMessage()"
+      />
+      <button (click)="startRecording()" [disabled]="isRecording">🎙️</button>
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

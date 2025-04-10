@@ -1,0 +1,30 @@
+<div class="profile-settings-container">
+  <app-doc-sidebar></app-doc-sidebar>
+  <div class="saved-posts">
+      <h2>Saved Posts</h2>
+      <div *ngIf="savedPosts.length === 0">
+          <p>No saved posts yet.</p>
+      </div>
+      
+      <div class="posts-grid">
+          <div *ngFor="let post of paginatedPosts" class="post-card">
+              <h3>{{ post.author }}</h3>
+              <h3>{{ post.createdDate }}</h3>
+              <p>{{ post.showFullContent ? post.content : post.content | slice: 0:150 }}...</p>
+              <a class="read" (click)="post.showFullContent = !post.showFullContent">
+                  {{ post.showFullContent ? 'Show Less' : 'Read More' }}
+              </a>
+              <div class="postimage">
+                  <img [src]="post.postImage" alt="Image Preview" class="image-preview" />
+              </div>
+              <button class="btn btn-danger mt-2" (click)="removePost(post.id)">Remove</button>
+          </div>
+      </div>
+      
+      <div class="pagination-buttons">
+          <button class="pagination-button" (click)="prevPage()" [disabled]="currentPage === 0">← Previous</button>
+          <button class="pagination-button" (click)="nextPage()" [disabled]="(currentPage + 1) * postsPerPage >= savedPosts.length">Next →</button>
+      </div>
+  </div>
+</div>
+  

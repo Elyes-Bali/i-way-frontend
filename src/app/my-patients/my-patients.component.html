@@ -1,0 +1,41 @@
+<div class="profile-settings-container">
+  <app-doc-sidebar></app-doc-sidebar>
+  <div class="content">
+    <div class="table-container">
+        <div class="header">
+      <p>My Patients</p>
+    </div>
+
+      <div *ngIf="patientsWithAcceptedAppointments.length === 0">
+        You Have No Patients Yet...
+      </div>
+
+      <table
+        class="styled-table"
+        *ngIf="patientsWithAcceptedAppointments.length > 0"
+      >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Medical File</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patientsWithAcceptedAppointments">
+            <td><b>{{ patient.name }}</b></td>
+            <td>{{ patient.email }}</td>
+            <td>{{ patient.number }}</td>
+            <td>
+                <button class="btn file-btn" 
+                        (click)="navigateToMedicalFile(patient.id)">
+                  Medical File
+                </button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

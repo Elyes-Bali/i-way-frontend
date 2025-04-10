@@ -1,0 +1,68 @@
+<div class="body">
+    <div class="sidebar">
+      <div class="sidebar-card">
+        <img src="../../../assets/imgs/2397461.jpg"  alt="Pharmacy" class="sidebar-image" />
+        <h3>Pharmacy Search</h3>
+        <p>Search for prescriptions by code to access medical details quickly.</p>
+        <div class="search-container">
+          <label for="searchCode">Search by Code:</label>
+          <input 
+            type="text" 
+            id="searchCode" 
+            [(ngModel)]="searchCode" 
+            (input)="filterFiles()" 
+            placeholder="Enter prescription code"
+          />
+        </div>
+      </div>
+    </div>
+  
+    <div class="main-content">
+      <!-- Display filtered results only if search code matches -->
+      <div class="prescription-container" *ngIf="filteredMedicalFiles.length > 0; else noPrescriptions">
+        <div class="prescription-card">
+          <div class="prescription-header">
+            <h2>HealLink</h2>
+            <h2><b>{{ filteredMedicalFiles[currentIndex]?.doctor.name | uppercase}}</b></h2>
+            <h3 class="doctor-info">Speciality: {{ filteredMedicalFiles[currentIndex]?.doctor.speciality }}</h3>
+          <p class="symptoms-text" [innerHTML]="filteredMedicalFiles[currentIndex] ? getFormattedContent(filteredMedicalFiles[currentIndex]?.code) : ''"></p>
+          </div>
+    
+          <h3 class="prescription-title">MEDICAL PRESCRIPTION</h3>
+    
+          <div class="prescription-body">
+            <div class="patient-info">
+              <p><strong>Patient:</strong> {{ filteredMedicalFiles[currentIndex]?.patient.name | uppercase }}</p>
+              <p><strong>Date:</strong> {{ formatDate(filteredMedicalFiles[currentIndex]?.createdAt) }}</p>
+            </div>
+    
+            <div class="separator"></div>
+    
+            <p class="rx-label">Medicines:</p>
+            <p class="prescription-text" [innerHTML]="filteredMedicalFiles[currentIndex] ? getFormattedContent(filteredMedicalFiles[currentIndex]?.prescriptions) : ''"></p>
+    
+            <div class="separator"></div>
+    
+            <h3><strong>Symptoms:</strong></h3>
+            <p class="symptoms-text" [innerHTML]="filteredMedicalFiles[currentIndex] ? getFormattedContent(filteredMedicalFiles[currentIndex]?.symptoms) : ''"></p>
+          </div>
+    
+          <div class="doctor-signature">
+            <p><strong>Doctor’s Signature:</strong></p>
+            <img [src]="filteredMedicalFiles[currentIndex]?.doctor.signatureUrl" alt="Doctor's Signature" class="signature-image" />
+          </div>
+          
+          <div class="prescription-footer">
+            <p>{{ filteredMedicalFiles[currentIndex]?.doctor.adress }} | +216{{ filteredMedicalFiles[currentIndex]?.doctor.number }} | {{ filteredMedicalFiles[currentIndex]?.doctor.eaddress }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <ng-template #noPrescriptions>
+        <div class="no-prescriptions">
+          <p>No medical files found with the provided code.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  

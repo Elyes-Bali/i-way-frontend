@@ -1,0 +1,105 @@
+<div class="main-content">
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <h2>Dashboard Overview</h2>
+      <p>View your appointments, posts, and user statistics in one place.</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-cards">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa fa-users"></i> <!-- Users icon -->
+        </div>
+        <h3>Total Users</h3>
+        <p>{{ totalUsers }}</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa fa-calendar-check"></i> <!-- Appointments icon -->
+        </div>
+        <h3>Total Appointments</h3>
+        <p>{{ totalAppointments }}</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa fa-pencil-alt"></i> <!-- Posts icon -->
+        </div>
+        <h3>Total Posts</h3>
+        <p>{{ totalPosts }}</p>
+      </div>
+    </div>
+    
+
+    <!-- First Chart (Appointments Overview) and Calendar -->
+    <div class="top-row">
+      <div class="chart-container">
+        <div class="chart-card">
+          <h3>Appointments Overview</h3>
+          <div class="chart-icon">
+            <i class="fa fa-calendar-check"></i>
+            <!-- Example icon -->
+          </div>
+          <canvas
+            baseChart
+            [datasets]="appointmentChartData.datasets"
+            [labels]="appointmentChartData.labels"
+            [options]="chartOptions"
+            [legend]="true"
+            [type]="'bar'">
+          </canvas>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-card">
+          <h3>Posts by Author</h3>
+          <div class="chart-icon">
+            <i class="fa fa-pencil-alt"></i>
+            <!-- Example icon -->
+          </div>
+          <canvas
+            baseChart
+            [datasets]="postChartData.datasets"
+            [labels]="postChartData.labels"
+            [options]="chartOptions"
+            [legend]="true"
+            [type]="'bar'">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Row (Pie charts) -->
+    <div class="bottom-row">
+      <div class="chart-container">
+        <div class="chart-card">
+          <h3>User Roles Distribution</h3>
+          <div class="chart-icon">
+            <i class="fa fa-users"></i>
+            <!-- Example icon -->
+          </div>
+          <canvas
+            baseChart
+            [datasets]="userChartData.datasets"
+            [labels]="userChartData.labels"
+            [options]="chartOptions"
+            [legend]="true"
+            [type]="'pie'">
+          </canvas>
+        </div>
+      </div>
+
+      <div class="calendar-container">
+        <div class="chart-card">
+          <h3>Calendar</h3>
+          <full-calendar [options]="calendarOptions">
+            <ng-template #eventContent let-arg>
+              <b>{{ arg.timeText }}</b>
+              <!-- <i>{{arg.event.title}}</i> -->
+            </ng-template>
+          </full-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

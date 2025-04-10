@@ -1,0 +1,79 @@
+<div class="main-content">
+  <div id="page-content-wrapper">
+    <div class="search-container">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search For a Doctor"
+        class="search-input mb-3"
+      />
+    </div>
+
+    <table *ngIf="filtereddocs && filtereddocs.length > 0" class="custom-table">
+      <thead>
+        <tr>
+          <th scope="col">Pharmacy name</th>
+          <th scope="col">Pharmacy email</th>
+
+          <th scope="col">Registration Number</th>
+          <th scope="col">Verification</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="filtereddocs && filtereddocs.length">
+          <tr *ngFor="let docs of pagedocs">
+            <ng-container
+              *ngIf="
+                !searchTerm ||
+                docs.email?.toLowerCase()?.includes(searchTerm.toLowerCase()) ||
+                docs.speciality
+                  ?.toLowerCase()
+                  ?.includes(searchTerm.toLowerCase())
+              "
+            >
+              <td>{{ docs.name }}</td>
+              <td>{{ docs.email }}</td>
+              <td>{{ docs.matricule }}</td>
+              <td>{{ docs.verified ? "Verified" : "Not Verified" }}</td>
+              <td>
+                <button
+                  class="btn"
+                  (click)="toggleVerificationStatus(docs)"
+                  [ngClass]="{
+                    'btn-danger': docs.verified,
+                    'btn-success': !docs.verified,
+                    'btn-sm': true
+                  }"
+                >
+                  {{ docs.verified ? "Disprove" : "Validate" }}
+                </button>
+              </td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <nav
+      aria-label="Page navigation"
+      *ngIf="filtereddocs && filtereddocs.length"
+    >
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="previousPage()">Previous</a>
+        </li>
+        <li
+          class="page-item"
+          *ngFor="let page of pages"
+          [class.active]="currentPage === page"
+        >
+          <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="nextPage()">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="sidebar">
+  <ul class="menu" *ngIf="isDoctorLoggedIn">
+    <li><a (click)="navigateToProfile()"><i class="fas fa-user"></i> Profile</a></li>
+    <li><a (click)="navigateToPatients()"><i class="fas fa-users"></i> Patients</a></li>
+    <li><a (click)="navigateToAppointments()"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+    <li><a (click)="navigateToConversations()"><i class="fas fa-comments"></i> Conversations</a></li>
+    <li><a (click)="navigateToPosts()"><i class="fas fa-newspaper"></i> My Posts</a></li>
+    <li><a (click)="navigateToSavedPosts()"><i class="fas fa-bookmark"></i> Saved Posts</a></li>
+    <li><a (click)="navigateToUpdate()"><i class="fas fa-user-edit"></i> Update Profile</a></li>
+    <li><a (click)="navigateToAvailability()"><i class="fas fa-clock"></i> Availabilities</a></li>
+  </ul>
+
+  <ul class="menu" *ngIf="isPatientLoggedIn">
+    <li><a (click)="patientAppointments()"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+    <li><a (click)="navigateToConversations()"><i class="fas fa-comments"></i> Conversations</a></li>
+    <li><a (click)="navigateToPrescription()"><i class="fas fa-file-medical-alt"></i> Prescriptions</a></li>
+    <li><a (click)="navigateToReclamations()"><i class="fas fa-exclamation-circle"></i> Reclamations</a></li>
+    <li><a (click)="navigateToSavedPosts()"><i class="fas fa-bookmark"></i> Saved Posts</a></li>
+    <li><a (click)="navigateToUpdate()"><i class="fas fa-user-edit"></i> Update Profile</a></li>
+  </ul>
+
+  <div class="profile-picture container shadow">
+    <img
+      [src]="userDetails.imgUrl ? userDetails.imgUrl : '../../assets/imgs/user.png'"
+      alt="Profile Picture"
+    />
+    <h1 class="text-xl font-semibold text-white">{{userDetails.name}}</h1>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<div class="profile-settings-wrapper">
+  <app-doc-sidebar></app-doc-sidebar>
+
+  <div class="profile-main">
+    <div class="profile-card">
+      <h2 class="profile-title">Update Profile</h2>
+      <form (ngSubmit)="updateUser()" class="profile-form">
+        <!-- Common Fields -->
+        <div class="grid">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              [(ngModel)]="userDetails.name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="userDetails.email"
+              name="email"
+              required
+              disabled="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="number">Phone Number</label>
+            <input
+              type="number"
+              id="number"
+              [(ngModel)]="userDetails.number"
+              name="number"
+            />
+          </div>
+          <div class="form-group" *ngIf="!isPharmacyLoggedIn">
+            <label for="number">Date of birth</label>
+            <input
+              type="date"
+              id="birth"
+              [(ngModel)]="userDetails.birthDate"
+              name="birth"
+            />
+          </div>
+        </div>
+
+        <!-- Doctor Specific Fields -->
+        <div *ngIf="isDoctorLoggedIn">
+          <div class="grid">
+            <div class="form-group">
+              <label for="speciality">Speciality</label>
+              <input
+                type="text"
+                id="speciality"
+                [(ngModel)]="userDetails.speciality"
+                name="speciality"
+              />
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input
+                type="text"
+                id="address"
+                [(ngModel)]="userDetails.adress"
+                name="address"
+              />
+            </div>
+            <div class="form-group">
+              <label for="eAddress">Working Address</label>
+              <input
+                type="text"
+                id="eAddress"
+                [(ngModel)]="userDetails.eaddress"
+                name="eAddress"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="statement">Statement</label>
+            <textarea
+              id="statement"
+              [(ngModel)]="userDetails.statement"
+              name="statement"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="education">Education</label>
+            <textarea
+              id="education"
+              [(ngModel)]="userDetails.education"
+              name="education"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="experience">Experience</label>
+            <textarea
+              id="experience"
+              [(ngModel)]="userDetails.experience"
+              name="experience"
+            ></textarea>
+          </div>
+      
+          <div class="form-group">
+            <label for="skills">Skills</label>
+            <textarea
+              id="skills"
+              [(ngModel)]="userDetails.skills"
+              name="skills"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="grid photos">
+          <!-- Profile Picture -->
+          <div class="form-group">
+            <label class="image-preview-container">Profile Picture</label><br />
+            <button
+              type="button"
+              (click)="fileInput.click()"
+              class="choose-btn"
+            >
+              Choose Picture
+            </button>
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileChange($event)"
+              hidden
+            />
+
+            <div class="image-preview-container" *ngIf="imagePreview">
+              <h5>Image Preview:</h5>
+              <img [src]="imagePreview" alt="Preview" class="img-preview" />
+            </div>
+          </div>
+          <!-- Signature -->
+          <div *ngIf="isDoctorLoggedIn" class="form-group">
+            <label class="image-preview-container">Signature</label><br />
+            <button
+              type="button"
+              (click)="signatureInput.click()"
+              class="choose-btn"
+            >
+              Choose Signature
+            </button>
+            <input
+              type="file"
+              #signatureInput
+              (change)="onSignatureChange($event)"
+              hidden
+            />
+
+            <div class="image-preview-container" *ngIf="signaturePreview">
+              <h5>Signature Preview:</h5>
+              <img [src]="signaturePreview" alt="Preview" class="img-preview" />
+            </div>
+          </div>
+          <!-- Loader -->
+        </div>
+        <div *ngIf="isLoading" class="loader-container">
+          <div class="loader"></div>
+          <p>Updating profile, please wait...</p>
+        </div>
+        <!-- Submit -->
+        <div class="submit-wrap">
+          <button type="submit" class="btn-submit">Update Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

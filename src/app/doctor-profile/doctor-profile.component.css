@@ -1,0 +1,111 @@
+.cover img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  margin: -50px auto 20px;
+  width: 70%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.profile-picture img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-top: -10%;
+}
+
+.profile-info h1 {
+  margin: 0;
+}
+
+.profile-info p {
+  color: gray;
+}
+
+.contact p {
+  margin: 5px 0;
+}
+
+.chat-btn {
+  background-color: #2a9df4;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.rating {
+  background: white;
+  padding: 10px;
+  width: 70%;
+
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.content-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.video,
+.loan-calculator {
+  background: white;
+  padding: 20px;
+  width: 900px;
+  text-align: left;
+  border-radius: 10px;
+ 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  position: relative;
+    padding-left: 20px; /* Ensures some space before the vertical line */
+    border-left: 2px solid #ddd; /* Light gray vertical line */
+    height: 100%; /* Vertical line color */
+}
+
+.video img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.play-button {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  position: relative;
+  top: -50%;
+}
+
+.loan-calculator button {
+  background-color: #2a9df4;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+  

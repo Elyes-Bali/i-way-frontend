@@ -1,0 +1,104 @@
+<div class="main-content">
+  <div id="page-content-wrapper">
+    <div class="row my-3">
+      <h3 class="fs-4 mb-3 text-white text-center">Reclamations List</h3>
+
+      <div class="col container">
+        
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          placeholder="Search For a Reclamation"
+          class="search-input mb-2"
+        />
+
+        <!-- Show this message if no reclamations are available -->
+        <div *ngIf="!filteredRecs || filteredRecs.length === 0">
+          <p class="text-center text-muted">No reclamations available.</p>
+        </div>
+
+        <!-- Show the table if reclamations exist -->
+        <table
+          *ngIf="filteredRecs && filteredRecs.length > 0"
+          class="custom-table bg-white rounded shadow-md table-hover"
+        >
+          <thead>
+            <tr>
+              <th scope="col">Sender</th>
+              <th scope="col">Conversation</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="filteredRecs && filteredRecs.length">
+              <tr *ngFor="let recs of pagedProducts">
+                <ng-container
+                  *ngIf="
+                    !searchTerm ||
+                    recs.email
+                      ?.toLowerCase()
+                      ?.includes(searchTerm.toLowerCase()) ||
+                    recs.description
+                      ?.toLowerCase()
+                      ?.includes(searchTerm.toLowerCase())
+                  "
+                >
+                  <td>{{ recs.email }}</td>
+                  <td>
+                    <div class="scrollable-description" [innerHTML]="getFormattedContent(recs.description)"></div>
+                  </td>
+                  
+                  <td>
+                    <button
+                      class="btn btn-danger"
+                      (click)="deleteReclamation(recs.idReclamation)"
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                    </button>&nbsp;
+
+                    <button
+                      routerLink="/editereclamation/{{ recs.idReclamation }}"
+                      class="btn btn-info"
+                    >
+                      <i class="fa fa-pencil" aria-hidden="true"></i> Answer
+                    </button>&nbsp;
+
+                    <a
+                      class="btn btn-email"
+                      [href]="'mailto:' + recs.email"
+                      target="_blank"
+                    >
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i> Email
+                    </a>
+                  </td>
+                </ng-container>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <nav
+          aria-label="Page navigation example"
+          *ngIf="filteredRecs && filteredRecs.length"
+        >
+          <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" (click)="previousPage()">Previous</a>
+            </li>
+            <li
+              class="page-item"
+              *ngFor="let page of pages"
+              [class.active]="currentPage === page"
+            >
+              <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <a class="page-link" (click)="nextPage()">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

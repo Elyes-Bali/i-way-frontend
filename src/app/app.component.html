@@ -1,0 +1,176 @@
+<div class="app-layout">
+  <!-- Sidebar (Only for Admin) -->
+  <ng-container *ngIf="isAdminLoggedIn">
+    <app-sidebar></app-sidebar>
+  </ng-container>
+
+  <!-- Main Content (Includes Navbar + Page Content) -->
+  <div class="main-content">
+    <mat-toolbar class="navbar">
+      <a *ngIf="!isAdminLoggedIn" routerLink="/" class="home-link">HealLink</a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin/patients" class="home-link"
+        >HealLink</a
+      >
+      <span class="spacer"></span>
+
+      <!-- Mobile Menu Icon (Only shown on small screens) -->
+      <button mat-icon-button class="menu-button" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="nav-links" [ngClass]="{ open: isMenuOpen }">
+        <ng-container
+          *ngIf="
+            !isPatientLoggedIn &&
+            !isAdminLoggedIn &&
+            !isDoctorLoggedIn &&
+            !isPharmacyLoggedIn
+          "
+        >
+          <button mat-button routerLink="/aboutus" routerLinkActive="active">
+            About Us
+          </button>
+          <button mat-button routerLink="/signup" routerLinkActive="active">
+            Register
+          </button>
+          <button mat-button routerLink="/login" routerLinkActive="active">
+            Login
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="isAdminLoggedIn">
+          <button
+            mat-button
+            routerLink="/charts"
+            routerLinkActive="active"
+          >
+            Dashboard
+          </button>
+          <button mat-button routerLinkActive="active" (click)="logout()">
+            Logout
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="isPatientLoggedIn">
+          <!-- Notification Bell Icon -->
+          <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+            <mat-icon>notifications</mat-icon>
+            <span class="notification-badge" *ngIf="notifications.length > 0">{{
+              notifications.length
+            }}</span>
+          </button>
+
+          <!-- Notification Dropdown -->
+          <mat-menu #notificationMenu="matMenu">
+            <ng-container
+              *ngIf="notifications.length > 0; else noNotifications"
+            >
+              <button mat-menu-item *ngFor="let notification of notifications">
+                {{ notification.message }}
+              </button>
+            </ng-container>
+            <ng-template #noNotifications>
+              <button mat-menu-item disabled>No new notifications</button>
+            </ng-template>
+          </mat-menu>
+          <button mat-button routerLink="/aboutus" routerLinkActive="active">
+            About Us
+          </button>
+          <button mat-button routerLink="/posts" routerLinkActive="active">
+            Community
+          </button>
+          <button mat-button routerLink="/chat" routerLinkActive="active">
+            AI Assistant
+          </button>
+          <button
+            mat-button
+            routerLink="/appointment"
+            routerLinkActive="active"
+          >
+            Doctors
+          </button>
+
+          <button mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
+          <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item (click)="patientAppointments()">
+              Appointments
+            </button>
+            <button mat-menu-item routerLink="/chatting">Conversations</button>
+            <button mat-menu-item routerLink="/myprescription">
+              Prescriptions
+            </button>
+            <button mat-menu-item routerLink="/profile/reclamations">
+              Reclamations
+            </button>
+            <button mat-menu-item routerLink="/saved-posts">Saved Posts</button>
+            <button mat-menu-item (click)="navigateToUpdate()">
+              Edit Profile
+            </button>
+          </mat-menu>
+          <button mat-button routerLinkActive="active" (click)="logout()">
+            Logout
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="isDoctorLoggedIn">
+          <button mat-button routerLink="/chat" routerLinkActive="active">
+            AI Assistant
+          </button>
+          <button mat-button routerLink="/posts" routerLinkActive="active">
+            Community
+          </button>
+
+          <!-- Profile Dropdown -->
+          <button mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
+          <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item (click)="navigateToProfile()">
+              View Profile
+            </button>
+            <button mat-menu-item routerLink="/doctor">Availability</button>
+            <button mat-menu-item (click)="navigateToAppointments()">
+              My Appointments
+            </button>
+            <button mat-menu-item routerLink="/mypatients">Medical Files</button>
+            <button mat-menu-item routerLink="/chatting">Conversations</button>
+            <button mat-menu-item routerLink="/my-posts">My Posts</button>
+            <button mat-menu-item (click)="navigateToUpdate()">
+              Edit Profile
+            </button>
+          </mat-menu>
+
+          <button mat-button routerLinkActive="active" (click)="logout()">
+            Logout
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="isPharmacyLoggedIn">
+          <button mat-button routerLink="/chat" routerLinkActive="active">
+            AI Assistant
+          </button>
+          <button
+            mat-button
+            routerLink="/pharmacy/prescription"
+            routerLinkActive="active"
+          >
+            Prescriptions
+          </button>
+
+          <!-- Profile Dropdown -->
+          <button mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
+          <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item (click)="navigateToUpdate()">
+              Edit Profile
+            </button>
+          </mat-menu>
+
+          <button mat-button routerLinkActive="active" (click)="logout()">
+            Logout
+          </button>
+        </ng-container>
+      </div>
+    </mat-toolbar>
+
+    <!-- Page Content -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

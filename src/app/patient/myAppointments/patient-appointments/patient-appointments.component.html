@@ -1,0 +1,57 @@
+<div class="profile-settings-container">
+  <!-- Sidebar -->
+  <app-doc-sidebar></app-doc-sidebar>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="header">
+      <p>My Appointments</p>
+    </div>
+
+    <div class="table-container">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Doctor</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Submission date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of paginatedAppointments">
+            <td>
+              <div class="doctor-info">
+                <div>
+                  <p class="doctor-name">{{ appointment.doctor?.name || "Unknown" }}</p>
+                  <p class="doctor-email">{{ appointment.doctor?.email || "N/A" }}</p>
+                </div>
+              </div>
+            </td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.time }}</td>
+            <td>{{ appointment.fullDate }}</td>
+            <td>
+              <span class="status" [ngClass]="{
+                'status-accepted': appointment.status === 'ACCEPTED',
+                'status-rejected': appointment.status === 'REJECTED',
+                'status-pending': appointment.status === 'PENDING'
+              }">
+                {{ appointment.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <!-- Pagination Controls -->
+      <div class="pagination-controls">
+        <button (click)="changePage(-1)" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }}</span>
+        <button (click)="changePage(1)" [disabled]="currentPage * pageSize >= appointments.length">Next</button>
+      </div>
+    </div>
+    
+  </div>
+</div>

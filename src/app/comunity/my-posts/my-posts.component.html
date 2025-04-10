@@ -1,0 +1,63 @@
+<div class="profile-settings-container">
+    <app-doc-sidebar></app-doc-sidebar>
+  
+    <div class="post-container">
+      
+
+      <div *ngFor="let post of posts" class="post-card">
+        <div class="post-header">
+          <h3 class="post-author">{{ post.author }}</h3>
+          <p class="post-date">{{ post.createdDate | date: 'short' }}</p>
+        </div>
+  
+        <div class="postimage mb-2" *ngIf="post.postImage">
+          <img [src]="post.postImage" alt="Image Preview" class="image-preview" />
+        </div>
+  
+        <div class="post-content">
+          <div *ngIf="editingPostId === post.id">
+            <!-- Edit Form -->
+            <textarea [(ngModel)]="updatedContent" rows="4" cols="50"></textarea>
+            <input type="file" (change)="onImageChange($event)" />
+            <div class="post-button">
+              <button class="btn btn-primary" (click)="updatePost(post.id)">
+                Save
+              </button>
+              <button class="btn btn-secondary" (click)="cancelEditing()">
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div *ngIf="editingPostId !== post.id">
+            <!-- Display Post Content -->
+            <p>{{ post.showFullContent ? post.content : post.content | slice: 0:150 }}...</p>
+            <div class="post-button">
+              <button class="btn btn-primary" (click)="post.showFullContent = !post.showFullContent">
+                {{ post.showFullContent ? 'Show Less' : 'Read More' }}
+              </button>
+              <button class="btn btn-warning" (click)="startEditing(post)">
+                Edit
+              </button>
+              <button class="btn btn-danger" (click)="deletePost(post.id)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="post-footer">
+          <div class="likes-comments">
+            <span class="likes"> {{ post.likes.length }} Likes</span>
+            <span class="comments"> {{ post.comments.length }} Comments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nomessages">
+        <div *ngIf="posts.length === 0" class="no-posts-message">
+            <p>You haven't posted anything yet!</p>
+            <p>Start sharing your thoughts or updates with the community.</p>
+          </div>
+        </div>
+  </div>
+  

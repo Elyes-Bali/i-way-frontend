@@ -1,0 +1,200 @@
+/* General Layout */
+#page-content-wrapper {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+h3 {
+  font-weight: 600;
+  color: #333;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Table Styling */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.custom-table th, .custom-table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.custom-table th {
+  background-color: #368db6;
+  color: white;
+  font-weight: bold;
+}
+
+/* Default background color for even rows */
+.custom-table tr:nth-child(even) {
+  background-color: #7c92ab4d; /* Blue color for even rows */
+}
+
+.custom-table tr:nth-child(odd):hover {
+  background-color: rgb(0 0 0 /10% ); /* Red color on hover for odd rows */
+
+}
+
+
+.custom-table tr:nth-child(even):hover {
+  background-color: #3dacce5e; /* Red color on hover for even rows */
+}
+
+/* Prevent hover effect on individual td */
+.custom-table td:hover {
+  background-color: transparent; /* Prevent individual td hover effect */
+}
+
+.custom-table td {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Button Styling */
+.btn {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn i {
+  margin-right: 5px;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Pagination Styling */
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.page-link:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.page-item.disabled .page-link {
+  color: #ddd;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .custom-table th, .custom-table td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .pagination .page-link {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  #page-content-wrapper {
+    padding: 15px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .custom-table th, .custom-table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .btn {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+
+  .pagination .page-link {
+    padding: 6px 10px;
+  }
+}
+
+/* Scrollable description */
+
+.main-content {
+  margin-left: 250px; /* Same as sidebar width */
+  width: calc(100% - 250px);
+  transition: margin-left 0.3s;
+}
