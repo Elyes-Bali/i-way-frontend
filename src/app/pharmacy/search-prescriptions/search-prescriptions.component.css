@@ -260,3 +260,38 @@
         padding: 15px;
     }
 }
+
+.action-buttons {
+    margin-top: 20px;
+    text-align: center;
+
+  }
+  
+  .bttn-close {
+    background-color: #ff1900;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 90px;
+    height: 60px;
+  }
+  
+  .bttn-close:disabled {
+    background-color: gray;
+    color: rgb(255, 255, 255);
+    cursor: not-allowed;
+  }
+  .closed-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+  }
+  

@@ -134,7 +134,7 @@ export class ChatComponent {
             botReply.includes("i don't know") ||
             botReply.includes('not sure') ||
             botReply.includes('i do not have any information') ||
-            // botReply.includes('i am an ai assistant') ||
+           botReply.includes('i suggest contacting a human agent for further assistance') ||
             botReply.includes('my knowledge is limited to') ||
             botReply.includes('as mentioned before') ||
             botReply.includes('as an ai') ||
@@ -144,7 +144,10 @@ export class ChatComponent {
             botReply.includes('i am sorry, i do not have information') ||
             botReply.includes('i am sorry, but i am not knowledgeable about')||
 
-           botReply.includes('i apologize, but as a medical assistant')
+           botReply.includes('i apologize, but as a medical assistant')||
+           botReply.includes('i am not able to provide information about ')||
+           botReply.includes('please contact a human agent for further assistance')
+           
           ) {
             const botMessage = {
               sender: 'bot',

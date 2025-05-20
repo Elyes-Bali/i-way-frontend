@@ -13,5 +13,6 @@ export interface MedicalFile {
     previousMedication?:string;
     createdAt?: string;
     code?: string;
+    closed?: boolean;
   }
   

@@ -1,5 +1,6 @@
 .hero {
     background: linear-gradient(to right, #89d6fa, #ffffff);
+    background-image: url('../../assets/imgs/heallink2.png');
     height: 85vh;
     display: flex;
     align-items: center;
@@ -8,6 +9,8 @@
     position: relative;
     padding: 20px;
     color: #222;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .hero .container {
@@ -40,6 +43,10 @@
     margin-bottom: 20px;
 }
 
+.content{
+    padding-top: 9%;
+}
+
 .cta-buttons {
     display: flex;
     justify-content: center;
@@ -68,7 +75,7 @@
 
 .btn-secondary {
     background: transparent;
-    color: #007bff;
+    color: #ffffff;
     border: 2px solid #007bff;
 }
 
@@ -223,3 +230,55 @@ footer {
     color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+  .footer .social-icons a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    font-size: 1.25rem;
+    color: #adb5bd;
+    transition: color 0.2s;
+  }
+  .footer .social-icons a:hover {
+    color: #ffffff;
+  }
+  .footer hr {
+    margin: 1rem 0;
+    opacity: 0.2;
+  }
+  
+
+
+  .chat-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .chat-bubble:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+  
+  .chat-bubble i {
+    pointer-events: none;
+  }
+  

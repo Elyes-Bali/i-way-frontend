@@ -1,6 +1,6 @@
 .cover img {
   width: 100%;
-  height: 280px;
+  height: 380px;
   object-fit: cover;
 }
 
@@ -108,4 +108,38 @@ table tr:nth-child(odd) {
   background-color: #fff;
 }
 
-  
+  .modal-dialog {
+  max-width: 800px;
+  width: 90%;
+}
+
+.modal-content {
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #fefefe;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 1.5rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}

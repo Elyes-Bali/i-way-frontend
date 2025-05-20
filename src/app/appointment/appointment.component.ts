@@ -89,16 +89,21 @@ export class AppointmentComponent implements OnInit {
     });
   }
 
-  get filteredDoctors() {
+    get filteredDoctors() {
     let doctors = this.availableDoctors.filter((doctor) => {
       const matchesSpecialty = !this.selectedSpecialty || doctor.specialty === this.selectedSpecialty;
       const matchesName = !this.searchName || doctor.username.toLowerCase().includes(this.searchName.toLowerCase());
       return matchesSpecialty && matchesName;
     });
-
+    
     // Paginate results
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return doctors.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get uniqueSpecialties(): string[] {
+    const specialties = this.availableDoctors.map(doc => doc.specialty);
+    return [...new Set(specialties)].sort(); // remove duplicates and sort
   }
 
   // Get total pages

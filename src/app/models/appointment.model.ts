@@ -11,6 +11,7 @@ export interface Appointment {
   patient?: User;
   doctor?: User;
   fullDate?:string;
+  canceled?: boolean; // New property to indicate if the appointment is canceled
 }
 
 export interface BookingResponse {

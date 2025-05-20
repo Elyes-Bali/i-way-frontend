@@ -36,30 +36,36 @@
               <span
                 class="status"
                 [ngClass]="{
-                  'status-accepted': appointment.status === 'ACCEPTED',
+                  'status-accepted': appointment.status === 'ACCEPTED' && !appointment.canceled,
                   'status-rejected': appointment.status === 'REJECTED',
-                  'status-pending': appointment.status === 'PENDING'
+                  'status-pending': appointment.status === 'PENDING',
+                  'status-canceled': appointment.canceled
                 }"
               >
-                {{ appointment.status }}
+                {{ appointment.canceled ? 'CANCELED' : appointment.status }}
               </span>
             </td>
+            
             <td>
-              <button
-                *ngIf="appointment.status === 'PENDING'"
-                class="btn accept-btn"
-                (click)="acceptAppointment(appointment.id)"
-              >
-                Accept
-              </button>
-              <button
-                *ngIf="appointment.status === 'PENDING'"
-                class="btn reject-btn"
-                (click)="rejectAppointment(appointment.id)"
-              >
-                Reject
-              </button>
+              <ng-container *ngIf="!appointment.canceled">
+                <button
+                  *ngIf="appointment.status === 'PENDING'"
+                  class="btn accept-btn"
+                  (click)="acceptAppointment(appointment.id)"
+                >
+                  Accept
+                </button>
+                <button
+                  *ngIf="appointment.status === 'PENDING'"
+                  class="btn reject-btn"
+                  (click)="rejectAppointment(appointment.id)"
+                >
+                  Reject
+                </button>
+              </ng-container>
+              <span *ngIf="appointment.canceled" class="text-muted">This appoitments has been canceled by patient</span>
             </td>
+            
           </tr>
         </tbody>
       </table>

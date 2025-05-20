@@ -21,7 +21,7 @@
           </div>
       </div>
       
-      <div class="pagination-buttons">
+      <div *ngIf="savedPosts.length > 0" class="pagination-buttons">
           <button class="pagination-button" (click)="prevPage()" [disabled]="currentPage === 0">← Previous</button>
           <button class="pagination-button" (click)="nextPage()" [disabled]="(currentPage + 1) * postsPerPage >= savedPosts.length">Next →</button>
       </div>

@@ -4,7 +4,7 @@
       <input
         type="text"
         [(ngModel)]="searchTerm"
-        placeholder="Search For a Doctor"
+        placeholder="Search For a pharmacies"
         class="search-input mb-3"
       />
     </div>
@@ -27,7 +27,7 @@
               *ngIf="
                 !searchTerm ||
                 docs.email?.toLowerCase()?.includes(searchTerm.toLowerCase()) ||
-                docs.speciality
+                docs.name
                   ?.toLowerCase()
                   ?.includes(searchTerm.toLowerCase())
               "

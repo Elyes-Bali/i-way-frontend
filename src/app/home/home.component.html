@@ -1,16 +1,16 @@
 <header class="hero">
   <div class="container">
+    <div class="content">
     <span class="tagline">Modern Healthcare Solutions</span>
     <h1><span class="highlight">Your Health,</span> Our Priority</h1>
     <p>
-      Experience world-class healthcare with our team of expert doctors and
-      state-of-the-art facilities.
+      Experience world-class healthcare with our team of doctors .
     </p>
     <div
       class="cta-buttons"
       *ngIf="isPatientLoggedIn || isDoctorLoggedIn || isPharmacyLoggedIn"
     >
-      <a href="/appointment" class="btn btn-primary">Get Started →</a>
+      <a href="/all-Doctors" class="btn btn-primary">Get Started →</a>
       <a href="/aboutus" class="btn btn-secondary">Learn More</a>
     </div>
     <div
@@ -20,6 +20,7 @@
       <a href="/login" class="btn btn-primary">LogIn →</a>
       <a href="/aboutus" class="btn btn-secondary">Learn More</a>
     </div>
+  </div>
     <div class="stats">
       <div class="stat-card">
         <i class="icon-rating"></i>
@@ -78,7 +79,7 @@
 </section>
 
 <section id="why-choose-us" class="three-d-section">
-  <h2>Why Choose Us?</h2>
+  <h1>Why Choose Us?</h1>
   <div class="three-d-container">
     <div class="three-d-card">
       <h4>Expert Doctors</h4>
@@ -95,6 +96,11 @@
   </div>
 </section>
 
+<a href="/chat" class="chat-bubble" aria-label="Chat with us" *ngIf="isPatientLoggedIn || isDoctorLoggedIn">
+  <i class="fas fa-comment-dots"></i>
+</a>
+
+
 <div>
   <section
     *ngIf="!isPatientLoggedIn && !isDoctorLoggedIn && !isPharmacyLoggedIn"
@@ -102,7 +108,7 @@
     <div class="container my-5 py-5">
       <div class="row">
         <div class="col-md-6">
-          <img src="../../assets/imgs/phar.jpg" alt="About" class="w-75" />
+          <img src="../../assets/imgs/heallink4.png" alt="About" class="w-75" />
         </div>
         <div class="col-md-6 mt-5">
           <h3 class="fs-5">Join Us</h3>
@@ -141,6 +147,48 @@
 </section>
 
 
-<footer class="text-center p-3 bg-dark text-white">
-  <p>&copy; 2025 Medical Appointments. All Rights Reserved.</p>
+<footer class="footer bg-dark text-white pt-5 pb-3">
+  <div class="container">
+    <div class="row">
+      <!-- About -->
+      <div class="col-md-4 mb-4">
+        <h5>About HealLink</h5>
+        <p class="small">
+          HealLink is your trusted platform to book appointments with top doctors,
+          schedule treatments, and manage your health—all in one place.
+        </p>
+      </div>
+      <!-- Quick Links -->
+      <div class="col-md-4 mb-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled small">
+          <li><a href="/">Home</a></li>
+          <li *ngIf="isPatientLoggedIn || isDoctorLoggedIn || isPharmacyLoggedIn"><a href="/community">community</a></li>
+          <li *ngIf="isPatientLoggedIn"><a href="/all-Doctors">Our Doctors</a></li>
+          <li *ngIf="isPatientLoggedIn || isDoctorLoggedIn"><a href="/chat">Ai Assistant</a></li>
+        </ul>
+      </div>
+      <!-- Contact & Social -->
+      <div class="col-md-4 mb-4">
+        <h5>Contact Us</h5>
+        <p class="small mb-2">
+          123 Health St.<br>
+          Tunis, Tunisia<br>
+          <a href="mailto:support&#64;heallink.com">support&#64;heallink.com</a><br>
+          +216 00 000 000
+        </p>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="border-secondary">
+    <div class="text-center small">
+      &copy; 2025 HealLink Team. All Rights Reserved.
+    </div>
+  </div>
 </footer>
+

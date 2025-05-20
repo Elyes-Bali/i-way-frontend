@@ -44,4 +44,8 @@ export class AppointmentsService {
     return this.http.get<Appointment[]>(`${API_URL}/all`);
   }
   
+  cancelAppointment(appointmentId: number): Observable<any> {
+    return this.http.put(`${API_URL}/canceled/${appointmentId}/cancel`, {});
+  }
+  
 }

@@ -33,13 +33,13 @@
 
     <div class="content-section col-md-6">
       <div class="loan-calculator">
-        <h2>Introduction</h2>
+        <h2>🩺Introduction</h2>
         <p [innerHTML]="getFormattedContent(userDetails.statement)"></p>
-        <h2>Education</h2>
+        <h2>🎓Education</h2>
         <p [innerHTML]="getFormattedContent(userDetails.education)"></p>
-        <h2>Experience</h2>
+        <h2>💼Experience</h2>
         <p [innerHTML]="getFormattedContent(userDetails.experience)"></p>
-        <h2>Skills</h2>
+        <h2>🛠️Skills</h2>
         <p [innerHTML]="getFormattedContent(userDetails.skills)"></p>
       </div>
     </div>
@@ -48,15 +48,17 @@
   <!-- Modal for Availability -->
   <div class="modal fade" id="availabilityModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
+      <div class="modal-content p-3">
         <div class="modal-header bg-primary text-white">
-          <h2 class="modal-title">{{ userDetails.name }}'s Availability</h2>
+          <h2 class="modal-title w-100 text-center">
+            {{ userDetails.name }}'s Availability
+          </h2>
         </div>
         <div class="modal-body">
           <div *ngIf="availableDays.length > 0">
-            <p><strong>Available Days and Times:</strong></p>
-            <table class="table table-bordered">
-              <thead>
+            <p class="mb-3"><strong>Available Days and Times:</strong></p>
+            <table class="table table-hover shadow-sm rounded">
+              <thead class="thead-light">
                 <tr>
                   <th scope="col">Day</th>
                   <th scope="col">Available Times</th>
@@ -65,60 +67,41 @@
               <tbody>
                 <tr *ngFor="let day of availableDays">
                   <td>{{ day.dayOfWeek }}</td>
-                  <td>
-                    From {{ formatTime(day.availableTimes[0]) }} To
-                    {{ formatTime(day.availableTimes[1]) }}
-                  </td>
+                  <td>From {{ formatTime(day.availableTimes[0]) }} To {{ formatTime(day.availableTimes[1]) }}</td>
                 </tr>
               </tbody>
             </table>
-
-            <div class="form-group mt-3">
-              <label><i class="fas fa-calendar-day"></i> Select Day:</label>
+      
+            <div class="form-group mt-4">
+              <label class="fw-bold"><i class="fas fa-calendar-day"></i> Select Day:</label>
               <select class="form-control" [(ngModel)]="selectedDay">
                 <option value="" disabled selected>Select a day</option>
-                <!-- Placeholder option -->
-                <option
-                  *ngFor="let day of availableDays"
-                  [value]="day.dayOfWeek"
-                >
-                  {{ day.dayOfWeek }}
-                </option>
+                <option *ngFor="let day of availableDays" [value]="day.dayOfWeek">{{ day.dayOfWeek }}</option>
               </select>
             </div>
-
+      
             <div class="form-group mt-3">
-              <label><i class="fas fa-clock"></i> Select Time:</label>
-              <input
-                type="time"
-                class="form-control"
-                [(ngModel)]="selectedTime"
-              />
+              <label class="fw-bold"><i class="fas fa-clock"></i> Select Time:</label>
+              <input type="time" class="form-control" [(ngModel)]="selectedTime" />
             </div>
-
+      
             <div class="text-center mt-4">
-              <button
-                class="btn btn-success btn-lg"
-                (click)="bookAppointment()"
-              >
+              <button class="btn btn-success btn-lg" (click)="bookAppointment()">
                 <i class="fas fa-check-circle"></i> Book Appointment
               </button>
             </div>
           </div>
+      
           <div *ngIf="availableDays.length === 0">
-            <p class="text-danger">No availability found for this doctor.</p>
+            <p class="text-danger mt-3">No availability found for this doctor.</p>
           </div>
         </div>
-
-        <div
-          *ngIf="appointmentStatus"
-          class="alert"
-          [ngClass]="appointmentStatus.type"
-        >
-          <i [ngClass]="appointmentStatus.icon"></i>
-          {{ appointmentStatus.message }}
+      
+        <div *ngIf="appointmentStatus" class="alert mt-3" [ngClass]="appointmentStatus.type">
+          <i [ngClass]="appointmentStatus.icon"></i> {{ appointmentStatus.message }}
         </div>
       </div>
+      
     </div>
   </div>
 </div>

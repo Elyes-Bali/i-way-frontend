@@ -12,7 +12,7 @@ import { AppointmentsService } from 'src/app/services/appointments/appointments.
 export class AllAppointmentsComponent implements OnInit {
   doctorId: number ; 
   appointments: Appointment[] = [];
-  pageSize = 7; 
+  pageSize = 10; 
   currentPage = 1;
   constructor(private appointmentService: AppointmentsService,private route: ActivatedRoute,private router: Router) {}
 

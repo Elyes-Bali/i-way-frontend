@@ -1,118 +1,79 @@
-<div class="medical-file-form">
+<div class="medical-file-container container">
   <div class="pulse-circle"></div>
-  <h2>Medical File</h2>
+  <h1 class="text-center mb-4"><strong>🩺 Medical File</strong></h1>
 
-  <!-- Medical File Form -->
-  <div *ngIf="medicalFile">
-    <!-- Personal Information Section -->
-    <div class="form-section">
-      <h3>Personal Information</h3>
-      <div class="form-group">
-        <label for="bloodType">Blood Type</label>
-        <input
-          id="bloodType"
-          type="text"
-          [(ngModel)]="medicalFile.bloodType"
-          placeholder="Enter the patient's blood type"
-        />
-      </div>
+  <div *ngIf="medicalFile" class="row justify-content-center">
+    <!-- Personal Info Section -->
+    <div class="col-12 col-md-10 form-section mb-3">
+      <h4 class="section-title">
+        <i class="fas fa-user-md me-2"></i> Personal Information
+      </h4>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="bloodType" class="form-label">Blood Type</label>
+          <input id="bloodType" type="text" [(ngModel)]="medicalFile.bloodType" class="form-control" placeholder="e.g., A+, O-" />
+        </div>
 
-      <div class="form-group">
-        <label for="height">Height (cm)</label>
-        <input
-          id="height"
-          type="number"
-          [(ngModel)]="medicalFile.height"
-          placeholder="Enter the patient's height"
-        />
-      </div>
+        <div class="col-md-4">
+          <label for="height" class="form-label">Height (cm)</label>
+          <input id="height" type="number" [(ngModel)]="medicalFile.height" class="form-control" placeholder="e.g., 170" />
+        </div>
 
-      <div class="form-group">
-        <label for="weight">Weight (Kg)</label>
-        <input
-          id="weight"
-          type="number"
-          [(ngModel)]="medicalFile.weight"
-          placeholder="Enter the patient's weight"
-        />
+        <div class="col-md-4">
+          <label for="weight" class="form-label">Weight (Kg)</label>
+          <input id="weight" type="number" [(ngModel)]="medicalFile.weight" class="form-control" placeholder="e.g., 65" />
+        </div>
       </div>
     </div>
 
-    <!-- Visit Information Section -->
-    <div class="form-section">
-      <h3>Visit Information</h3>
-      <div class="form-group">
-        <label for="reasons">Purpose of the Visit <span class="required">*</span></label>
-        <textarea
-          id="reasons"
-          [(ngModel)]="medicalFile.reasons"
-          placeholder="Enter the purpose of the visit"
-          required
-        ></textarea>
+    <!-- Visit Info Section -->
+    <div class="col-12 col-md-10 form-section">
+      <h4 class="section-title">
+        <i class="fas fa-calendar-check me-2"></i> Visit Information
+      </h4>
+      <div class="mb-3">
+        <label for="reasons" class="form-label">Purpose of the Visit <span class="text-danger">*</span></label>
+        <textarea id="reasons" [(ngModel)]="medicalFile.reasons" class="form-control" rows="3" required></textarea>
       </div>
-
-      <div class="form-group">
-        <label for="symptoms">Symptoms <span class="required">*</span></label>
-        <textarea
-          id="symptoms"
-          [(ngModel)]="medicalFile.symptoms"
-          placeholder="Describe the symptoms"
-          required
-        ></textarea>
+      <div class="mb-3">
+        <label for="symptoms" class="form-label">Symptoms <span class="text-danger">*</span></label>
+        <textarea id="symptoms" [(ngModel)]="medicalFile.symptoms" class="form-control" rows="3" required></textarea>
       </div>
     </div>
 
     <!-- Medication History Section -->
-    <div class="form-section">
-      <h3>Medication History</h3>
-      <div class="form-group">
-        <label for="previousMedication">Previous Medication</label>
-        <textarea
-          id="previousMedication"
-          [(ngModel)]="medicalFile.previousMedication"
-          placeholder="Enter previous medications taken by the patient"
-        ></textarea>
+    <div class="col-12 col-md-10 form-section">
+      <h4 class="section-title">
+        <i class="fas fa-pills me-2"></i> Medication History
+      </h4>
+      <div class="mb-3">
+        <label for="previousMedication" class="form-label">Previous Medication</label>
+        <textarea id="previousMedication" [(ngModel)]="medicalFile.previousMedication" class="form-control" rows="3"></textarea>
       </div>
-
-      <div class="form-group">
-        <label for="prescriptions">Prescriptions <span class="required">*</span></label>
-        <textarea
-          id="prescriptions"
-          [(ngModel)]="medicalFile.prescriptions"
-          placeholder="Enter prescribed medications"
-          required
-        ></textarea>
+      <div class="mb-3">
+        <label for="prescriptions" class="form-label">Prescriptions <span class="text-danger">*</span></label>
+        <small class="text-muted d-block mb-2">Example: Medicine Name - way of use</small>
+        <textarea id="prescriptions" [(ngModel)]="medicalFile.prescriptions" class="form-control" rows="3" required></textarea>
       </div>
     </div>
 
     <!-- Additional Notes Section -->
-    <div class="form-section">
-      <h3>Additional Notes</h3>
-      <div class="form-group">
-        <label for="additionalNotes">Additional Notes</label>
-        <textarea
-          id="additionalNotes"
-          [(ngModel)]="medicalFile.additionalNotes"
-          placeholder="Any additional notes"
-        ></textarea>
+    <div class="col-12 col-md-10 form-section">
+      <h4 class="section-title">
+        <i class="fas fa-notes-medical me-2"></i> Additional Notes
+      </h4>
+      <div class="mb-3">
+        <textarea id="additionalNotes" [(ngModel)]="medicalFile.additionalNotes" class="form-control" rows="3" placeholder="Any additional notes"></textarea>
       </div>
     </div>
 
-    <!-- Save/Update Button -->
-    <div class="button-container">
-      <button
-        *ngIf="testMedicalFiles.length == 0"
-        class="save-button"
-        (click)="saveMedicalFile()"
-      >
-        Save
+    <!-- Buttons Section -->
+    <div class="col-12 col-md-10 text-center mt-4">
+      <button *ngIf="testMedicalFiles.length == 0" class="btn btn-success btn-lg w-100 shadow" (click)="saveMedicalFile()">
+        <i class="fas fa-save me-2"></i> Save
       </button>
-      <button
-        *ngIf="testMedicalFiles.length != 0"
-        class="save-button"
-        (click)="updateMedicalFile()"
-      >
-        Update
+      <button *ngIf="testMedicalFiles.length != 0" class="btn btn-primary btn-lg w-100 shadow" (click)="updateMedicalFile()">
+        <i class="fas fa-sync-alt me-2"></i> Update
       </button>
     </div>
   </div>

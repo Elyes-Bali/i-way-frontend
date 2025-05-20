@@ -1,116 +1,123 @@
-.medical-file-form {
-  max-width: 100%;
-  margin: 30px auto;
-  padding: 40px;
-  background-color: #f1f8ff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Main Form Container */
+.medical-file-container {
   position: relative;
-  overflow: hidden;
-  z-index: 1; 
+  background-color: #f9fbfd;
+  padding: 3rem 2rem;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
 }
 
-/* Pulse Circle */
 .pulse-circle {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 1000px;
-  height: 1000px;
-  background: radial-gradient(circle, rgba(0, 170, 255, 0.3), rgba(0, 170, 255, 0.1)); /* Gradient effect */
+  width: 1100px;
+  height: 1100px;
+  background: radial-gradient(circle, rgba(0, 170, 255, 0.2), rgba(0, 170, 255, 0.1));
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: pulseAnimation 2s infinite ease-in-out;
-  z-index: -1; /* Keep it behind the form content */
+  animation: pulseAnimation 3.5s infinite ease-in-out;
+  z-index: -1;
 }
 
+/* Pulse Effect */
 @keyframes pulseAnimation {
   0% {
     transform: translate(-50%, -50%) scale(1);
-    opacity: 0.7;
+    opacity: 0.6;
   }
   50% {
     transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0.4;
+    opacity: 0.3;
   }
   100% {
     transform: translate(-50%, -50%) scale(1);
-    opacity: 0.7;
+    opacity: 0.6;
   }
 }
 
-h2 {
-  text-align: center;
-  color: #333;
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-h3 {
-  font-size: 20px;
-  color: #2c3e50;
-  margin-bottom: 15px;
-}
-
-.form-section {
-  margin-bottom: 30px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
+/* Section Title */
+.section-title {
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 8px;
-  color: #333;
-  display: block;
+  color: #3498db;
+  border-left: 5px solid #3498db;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
 }
 
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  box-sizing: border-box;
+.section-title:hover {
+  transform: scale(1.05);
 }
 
-.form-group textarea {
-  min-height: 120px;
+/* Input Fields */
+textarea,
+input[type="text"],
+input[type="number"] {
+  border-radius: 8px !important;
+  padding: 12px 15px;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e1e1e1;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #3498db;
+textarea:focus,
+input:focus {
+  border-color: #1abc9c;
   outline: none;
+  box-shadow: 0 0 5px rgba(26, 188, 156, 0.25);
 }
 
-button.save-button {
-  width: 100%;
-  padding: 15px;
+/* Button Styles */
+.btn {
+  font-weight: 500;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-success {
   background-color: #4CAF50;
-  color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-button.save-button:hover {
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-success:hover {
   background-color: #45a049;
 }
 
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
+.btn-primary:hover {
+  background-color: #0069d9;
 }
 
-.button-container {
-  text-align: center;
-  margin-top: 20px;
+/* Hover Transition for Inputs */
+input[type="text"]:hover,
+input[type="number"]:hover,
+textarea:hover {
+  background-color: #f4f7fb;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .medical-file-container {
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .row {
+    margin: 0;
+  }
 }

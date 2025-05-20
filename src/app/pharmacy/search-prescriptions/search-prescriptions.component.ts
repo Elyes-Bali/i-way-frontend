@@ -68,4 +68,26 @@ export class SearchPrescriptionsComponent implements OnInit {
     // Convert newlines to <br> and preserve spaces using <pre> tag
     return content.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
   }
+
+
+  closeMedicalFile(file: any): void {
+    if (file && !file.closed) {
+      const updatedFile = { ...file, closed: true };
+  
+      this.medicalFileService.updateMedicalFile(file.id, updatedFile).subscribe({
+        next: (response) => {
+          alert('Medical file successfully closed.');
+          file.closed = true; // Update locally after success
+        },
+        error: (error) => {
+          console.error('Failed to close the file', error);
+          alert('Error closing the medical file.');
+        }
+      });
+    }
+  }
+  
+
+
+
 }

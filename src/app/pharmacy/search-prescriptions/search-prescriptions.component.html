@@ -26,7 +26,14 @@
             <h2><b>{{ filteredMedicalFiles[currentIndex]?.doctor.name | uppercase}}</b></h2>
             <h3 class="doctor-info">Speciality: {{ filteredMedicalFiles[currentIndex]?.doctor.speciality }}</h3>
           <p class="symptoms-text" [innerHTML]="filteredMedicalFiles[currentIndex] ? getFormattedContent(filteredMedicalFiles[currentIndex]?.code) : ''"></p>
-          </div>
+          <div 
+          *ngIf="filteredMedicalFiles[currentIndex]?.closed" 
+          class="closed-message"
+        >
+          ✅ This prescription has been <strong>delivered</strong>.
+        </div>
+        
+        </div>
     
           <h3 class="prescription-title">MEDICAL PRESCRIPTION</h3>
     
@@ -55,6 +62,18 @@
           <div class="prescription-footer">
             <p>{{ filteredMedicalFiles[currentIndex]?.doctor.adress }} | +216{{ filteredMedicalFiles[currentIndex]?.doctor.number }} | {{ filteredMedicalFiles[currentIndex]?.doctor.eaddress }}</p>
           </div>
+
+
+          <div class="action-buttons">
+            <button 
+              class="bttn-close " 
+              (click)="closeMedicalFile(filteredMedicalFiles[currentIndex])"
+              [disabled]="filteredMedicalFiles[currentIndex]?.closed"
+            >
+              {{ filteredMedicalFiles[currentIndex]?.closed ? 'File Closed' : 'Close File' }}
+            </button>
+          </div>
+          
         </div>
       </div>
   
