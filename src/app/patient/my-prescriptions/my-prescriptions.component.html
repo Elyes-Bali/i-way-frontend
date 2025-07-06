@@ -1,0 +1,102 @@
+<div class="body">
+  <div
+    class="prescription-container"
+    *ngIf="prescriptions.length > 0; else noPrescriptions"
+  >
+    <div class="prescription-card">
+      <div class="prescription-header">
+        <h2>HealLink</h2>
+        <h2>
+          <b>{{ prescriptions[currentIndex]?.doctor?.name | uppercase }}</b>
+        </h2>
+        <h3 class="doctor-info">
+          Speciality: {{ prescriptions[currentIndex]?.doctor?.speciality }}
+        </h3>
+        <h3>Prescription Code :</h3>
+        <p class="symptoms-text">{{ prescriptions[currentIndex]?.code }}</p>
+      </div>
+
+      <h3 class="prescription-title">MEDICAL PRESCRIPTION</h3>
+
+      <div class="prescription-body">
+        <div class="patient-info">
+          <p>
+            <strong>Patient:</strong>
+            {{ prescriptions[currentIndex]?.patient?.name | uppercase }}
+          </p>
+          <p>
+            <strong>Date:</strong>
+            {{ formatDate(prescriptions[currentIndex]?.createdAt) }}
+          </p>
+        </div>
+
+        <div class="separator"></div>
+
+        <p class="rx-label">Medicines:</p>
+        <div class="prescription-text">
+          <ul>
+            <li *ngFor="let med of prescriptions[currentIndex]?.medications">
+              <div class="med-item">
+                <span class="med-name">{{ med.name }} - </span>
+                <span class="med-info"
+                  >{{ med.usageInstructions }} ({{ med.duration }})</span
+                >
+                <span
+                  class="badge"
+                  [ngClass]="med.delivered ? 'success' : 'danger'"
+                >
+                  {{ med.delivered ? "✔ Delivered" : "✘ Not Delivered" }}
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="separator"></div>
+
+        <h3><strong>Symptoms:</strong></h3>
+        <p class="symptoms-text">{{ prescriptions[currentIndex]?.symptoms }}</p>
+      </div>
+
+      <div class="doctor-signature">
+        <p><strong>Doctor’s Signature:</strong></p>
+        <img
+          [src]="prescriptions[currentIndex]?.doctor?.signatureUrl"
+          alt="Doctor's Signature"
+          class="signature-image"
+        />
+      </div>
+
+      <div class="prescription-footer">
+        <p>
+          {{ prescriptions[currentIndex]?.doctor?.adress }} | +216{{
+            prescriptions[currentIndex]?.doctor?.number
+          }}
+          | {{ prescriptions[currentIndex]?.doctor?.eaddress }}
+        </p>
+      </div>
+
+      <div class="navigation-buttons">
+        <button
+          class="nav-button"
+          (click)="prevPrescription()"
+          [disabled]="currentIndex === 0"
+        >
+          ← Previous
+        </button>
+        <button
+          class="nav-button"
+          (click)="nextPrescription()"
+          [disabled]="currentIndex === prescriptions.length - 1"
+        >
+          Next →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noPrescriptions>
+    <div class="no-prescriptions">
+      <p>You have No Prescriptions</p>
+    </div>
+  </ng-template>
+</div>

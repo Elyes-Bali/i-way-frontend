@@ -18,6 +18,7 @@
     position: fixed; /* Fix sidebar in place */
     top: 65px; /* Push sidebar below navbar, adjust based on navbar height */
     bottom: 20px; /* Ensures sidebar stays within the page bounds */
+    margin-left: -2% !important;
     
 }
 

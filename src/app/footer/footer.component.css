@@ -1,0 +1,38 @@
+.footer a {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer .social-icons .social-icon {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #adb5bd;
+  font-size: 1.2rem;
+  transition: all 0.3s ease-in-out;
+}
+.footer .social-icons .social-icon:hover {
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+
+@media (max-width: 767.98px) {
+  .footer .social-icons {
+    justify-content: center;
+  }
+  .footer h2 {
+    text-align: center;
+  }
+  .footer p, .footer ul {
+    text-align: center;
+  }
+}

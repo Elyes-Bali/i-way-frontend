@@ -23,11 +23,16 @@ export class DoctorComponent implements OnInit {
     dayOfWeek: '',
     startTime: '',
     endTime: '',
+    secondTime: '',
+    secondendTime: '',
+    thirdTime: '',
+    thirdendTime: '',
   };
   isLoading: boolean = false;
   errorMessage: string = '';
   showSuccessMessage: boolean = false;
   showDeleteMessage: boolean = false;
+  showMoreSlots = false; 
   constructor(private availabilityService: DoctorAvailabilityService,private userService: AuthService) {}
 
   ngOnInit() {
@@ -76,6 +81,10 @@ export class DoctorComponent implements OnInit {
             dayOfWeek: '',
             startTime: '',
             endTime: '',
+            secondTime: '',
+            secondendTime: '',
+            thirdTime: '',
+            thirdendTime: '',
           };
         },
         (error) => {

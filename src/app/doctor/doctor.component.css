@@ -1,9 +1,10 @@
 .profile-settings-wrapper {
   display: flex;
   flex-wrap: wrap;
-  background: #eef3f9;
+ background: linear-gradient(135deg, #e0f2fe, #bae6fd);
   min-height: 100vh;
-  padding: 20px;
+  padding: 50px 15px; 
+   gap: 40px;
 }
 
 .profile-main {

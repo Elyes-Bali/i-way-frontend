@@ -1,145 +1,213 @@
+/* Cover Section */
 .cover img {
   width: 100%;
   height: 380px;
   object-fit: cover;
+  border-bottom: 5px solid #0d6efd;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.profile-container {
+/* Container Enhancements */
+body {
+  background: linear-gradient(to right, #f6f8fc 0%, #ffffff 25%, #ffffff 75%, #f6f8fc 100%);
+}
+
+.container.shadow {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  margin-top: -60px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+  max-width: 1400px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-section {
+  padding: 2rem 2rem 2rem 3rem;
+}
+
+/* Optional: make sure row takes full width */
+.row {
+  width: 100%;
+  margin: 0;
+}
+
+
+/* Doctor Profile Column */
+.docs {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-right: 1px solid #eaeaea;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  background: white;
-  padding: 20px;
-  margin: -50px auto 20px;
-  width: 70%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
 }
 
+/* Profile Picture */
 .profile-picture img {
   width: 200px;
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid white;
-  margin-top: -10%;
+  border: 6px solid #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
+.profile-picture img:hover {
+  transform: scale(1.05);
+}
+
+/* Profile Info */
 .profile-info h1 {
-  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #0d6efd;
 }
 
 .profile-info p {
-  color: gray;
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.location {
+  font-size: 1rem;
+  color: #0d6efd;
+  margin: 1rem 0;
 }
 
 .contact p {
-  margin: 5px 0;
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+  color: #333;
 }
 
-.chat-btn {
-  background-color: #2a9df4;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+/* Book Appointment Button */
+.btn-primary {
+  margin-top: 1rem;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
 }
 
+.btn-primary:hover {
+  background-color: #0a58ca;
+  transform: translateY(-1px);
+}
+
+/* Rating */
 .rating {
-  background: white;
-  padding: 10px;
-  width: 70%;
-
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.content-section {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.video,
-.loan-calculator {
-  background: white;
-  padding: 20px;
-  width: 900px;
-  text-align: left;
-  border-radius: 10px;
- 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  position: relative;
-    padding-left: 20px; /* Ensures some space before the vertical line */
-    border-left: 2px solid #ddd; /* Light gray vertical line */
-    height: 100%; /* Vertical line color */
-}
-
-.video img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.play-button {
-  background: none;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-  position: relative;
-  top: -50%;
-}
-
-.loan-calculator button {
-  background-color: #2a9df4;
-  color: white;
-  border: none;
-  padding: 8px 15px;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #f1f3f5;
   border-radius: 20px;
-  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  color: #444;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+/* Content Section (Right Column) */
+.content-section {
+  padding: 2rem;
 }
 
-table tr:nth-child(odd) {
-  background-color: #fff;
+.loan-calculator {
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-size: 1.1rem;
+  line-height: 1.7;
 }
 
-  .modal-dialog {
-  max-width: 800px;
-  width: 90%;
+.loan-calculator h2 {
+  font-weight: 700;
+  color: #0d6efd;
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
 }
 
+/* Modal Enhancements */
 .modal-content {
-  border-radius: 15px;
-  padding: 20px;
-  background-color: #fefefe;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: #ffffff;
 }
 
 .modal-header {
-  border-bottom: 1px solid #dee2e6;
-  justify-content: center;
+  border-bottom: none;
   text-align: center;
-  padding: 1rem 1.5rem;
+  background-color: #0d6efd;
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
-.modal-header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.modal-body {
-  max-height: 70vh;
-  overflow-y: auto;
-  padding: 1rem 1.5rem;
-}
-
-.table th,
-.table td {
-  vertical-align: middle;
+.modal-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: 100%;
   text-align: center;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e7f1ff;
+}
+
+.table thead {
+  background-color: #f0f8ff;
+}
+
+select.form-control,
+input.form-control {
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ced4da;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-success.btn-lg {
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+.btn-success.btn-lg:hover {
+  background-color: #157347;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .docs {
+    border-right: none;
+    margin-bottom: 2rem;
+  }
+
+  .profile-picture img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .loan-calculator {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+
+  .modal-dialog {
+    width: 95%;
+  }
+
+  .content-section {
+    padding: 1rem;
+  }
 }

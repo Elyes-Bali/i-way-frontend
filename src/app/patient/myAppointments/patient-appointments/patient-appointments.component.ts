@@ -13,7 +13,7 @@ export class PatientAppointmentsComponent implements OnInit {
   patientId: number;
   appointments: Appointment[] = [];
   notifications: any[] = [];
-  pageSize = 10; // Number of appointments per page
+  pageSize = 7; // Number of appointments per page
   currentPage = 1;
   constructor(private appointmentService: AppointmentsService, private route: ActivatedRoute,  private webSocketService: WebSocketServiceService) {}
 

@@ -1,0 +1,169 @@
+<body class="bg-gradient-to-r from-blue-100 to-purple-100">
+  <header class="header-gradient">
+    <div class="header-text-section">
+      <h1>AI-Powered Medical Services</h1>
+      <h2><span class="highlight">Your Health,</span> Enhanced by AI</h2>
+      <p><strong>
+        Experience smarter healthcare with intelligent diagnostics and real-time doctor interaction.
+      </strong></p>
+      <p>
+        Welcome to a revolutionary healthcare platform that uses AI to simplify, predict, and assist. 
+        From lab report interpretations to disease prediction and medication alternatives, we’re here to help.
+      </p>
+      <a href="/all-Doctors" *ngIf="isPatientLoggedIn || isDoctorLoggedIn">Get Started →</a>
+      <a href="/pharmacy/prescription" *ngIf="isPharmacyLoggedIn">Get Started →</a>
+      <a href="/login" *ngIf="!isPatientLoggedIn && !isDoctorLoggedIn && !isPharmacyLoggedIn">Log In →</a>
+    </div>
+    <div class="header-image-container">
+      <img
+        src="../../assets/imgs/HLlogoNew.png"
+        alt="AI Medical Assistant"
+        class="header-image"
+      />
+    </div>
+  </header>
+
+  <section>
+    <div class="grid-container">
+      <div>
+        <h2>Smarter Healthcare Starts Here:</h2>
+        <h3 class="sub-title">Empower patients with AI-driven support.</h3>
+        <p>
+          Our system combines real-time doctor communication, AI diagnosis, lab report interpretation, and drug recommendations into one seamless platform.
+        </p>
+        <p>
+          <strong>We bring accessible, intelligent care right to your screen.</strong>
+        </p>
+        <p>
+          Whether you're seeking quick insights, tracking prescriptions, or chatting with a doctor — our tools are designed to improve outcomes and save time.
+        </p>
+      </div>
+      <div class="rounded-lg">
+        <img
+          src="../../assets/imgs/heallink2.png"
+          alt="Medical AI Dashboard"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Key Services</h2>
+    <div class="programs-grid">
+      <div class="program-card">
+        <h3 class="title">AI Lab Report Interpreter</h3>
+        <h3 class="sub-title">Understand Your Health in Seconds</h3>
+        <p><strong>Upload your PDF report and get a simple explanation.</strong></p>
+        <p>
+          Our system reads and translates complex lab results into plain language. 
+          No more guessing what numbers mean – just clear guidance.
+        </p>
+        <a href="/HealLink-Ai-lab-interpreter" *ngIf=" isDoctorLoggedIn || isPatientLoggedIn || isPharmacyLoggedIn">Try It <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="program-card">
+        <h3 class="title">Symptom-Based Diagnosis</h3>
+        <h3 class="sub-title">AI Disease Prediction</h3>
+        <p><strong>Input your symptoms. Get a likely diagnosis.</strong></p>
+        <p>
+          Our AI uses expert medical knowledge to suggest probable illnesses with reasoning — helping you take informed next steps.
+        </p>
+
+        <a href="#" *ngIf=" isDoctorLoggedIn">Try It <i class="fa fa-arrow-right" aria-hidden="true" ></i></a>
+      </div>
+      <div class="program-card">
+        <h3 class="title">Drug Alternatives</h3>
+        <h3 class="sub-title">AI Drug Alternatives</h3>
+        <p>
+          Can't find your prescription? We’ll suggest safe, commonly used alternatives with brief explanations.
+        </p>
+
+        <a href="#" *ngIf=" isPharmacyLoggedIn">Try It <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid-container">
+      <div>
+        <h2>Our Approach to Smart Healthcare</h2>
+        <p>
+          We use a patient-first approach, blending AI tools with human expertise to provide reliable, clear, and fast healthcare support.
+        </p>
+        <ul>
+          <li>Upload & analyze lab reports instantly</li>
+          <li>Ask questions through a smart chatbot</li>
+          <li>Book appointments with real doctors</li>
+          <li>Track symptoms and prescriptions</li>
+        </ul>
+      </div>
+      <div class="rounded-lg">
+        <img
+          src="../../assets/imgs/healfor.png"
+          alt="AI and Doctor Collaboration"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Users Are Saying</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="italic">
+          "The lab report interpretation is amazing! It explained everything in plain English. I felt like I finally understood my health."
+        </p>
+        <p class="font-semibold author">- Nour B.</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="italic">
+          "The chatbot helped me understand symptoms I was experiencing. It's like having a doctor in my pocket."
+        </p>
+        <p class="font-semibold author">- Karim D.</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="italic">
+          "I used it when my medication was out of stock and got helpful alternatives instantly. Saved me a trip to the pharmacy."
+        </p>
+        <p class="font-semibold author">- Fatima Z.</p>
+      </div>
+    </div>
+  </section>
+
+<section id="enroll" class="py-5 bg-light text-center" *ngIf="!isPatientLoggedIn && !isDoctorLoggedIn && !isPharmacyLoggedIn">
+  <div class="container">
+    <h2 class="display-5 fw-bold mb-4 text-primary">Join Us Today</h2>
+    <p class="lead text-muted mb-5">
+      Discover AI-powered medical services that are simple, fast, and always available.
+    </p>
+
+    <div class="row justify-content-center g-4 text-center">
+      <!-- Doctor Signup -->
+      <div class="col-md-5">
+        <div class="card h-100 shadow-sm border-0 rounded-4 p-4">
+          <h4 class="text-success fw-bold mb-3">👩‍⚕️ Sign Up as a Doctor</h4>
+          <p class="text-muted mb-4">
+            Manage your availability, connect with patients, and provide expert medical care enhanced by AI tools.
+          </p>
+          <a href="/doctor-signup" class="btn btn-success w-100 fw-semibold">Join as Doctor</a>
+        </div>
+      </div>
+
+      <!-- Pharmacy Signup -->
+      <div class="col-md-5">
+        <div class="card h-100 shadow-sm border-0 rounded-4 p-4">
+          <h4 class="text-info fw-bold mb-3">💊 Register Your Pharmacy</h4>
+          <p class="text-muted mb-4">
+            Partner with us to fulfill prescriptions, suggest safe alternatives, and serve patients through smart automation.
+          </p>
+          <a href="/pharmacy-signup" class="btn btn-info w-100 fw-semibold">Register Pharmacy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="/chat" class="chat-bubble" aria-label="Chat with us" *ngIf="isPatientLoggedIn || isDoctorLoggedIn">
+  <i class="fas fa-comment-dots"></i>
+</a>
+</body>
+<app-footer></app-footer>

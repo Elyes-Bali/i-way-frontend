@@ -97,7 +97,7 @@
 }
 .sent-message span {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 /* Received messages (align left) */
 .message.received {
@@ -110,7 +110,7 @@
 
 .received-message span {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 /* Wrapper for message content and delete button */
 .message-wrapper {
@@ -228,7 +228,7 @@ button:focus {
 
   .user-number{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   .right-panel-header {
     display: flex;

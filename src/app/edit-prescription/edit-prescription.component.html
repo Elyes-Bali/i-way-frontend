@@ -1,0 +1,114 @@
+<div class="page-layout">
+  <aside class="sidebar left-sidebar">
+    <h3>💡 Health Tips</h3>
+    <ul>
+      <li>Take medications as prescribed.</li>
+      <li>Stay hydrated.</li>
+      <li>Report any side effects promptly.</li>
+      <li>Keep a list of your medications handy.</li>
+    </ul>
+  </aside>
+
+<div class="edit-container card shadow p-4 rounded border-primary">
+  <h2 class="mb-4 text-primary fw-bold text-center">Edit Prescription</h2>
+
+  <form (ngSubmit)="updatePrescription()" class="needs-validation" novalidate>
+    <!-- Symptoms -->
+    <div class="mb-4">
+      <label for="symptoms" class="form-label fw-semibold fs-5">Symptoms</label>
+      <textarea
+        class="form-control shadow-sm"
+        [(ngModel)]="prescription.symptoms"
+        name="symptoms"
+        id="symptoms"
+        rows="4"
+        placeholder="Describe symptoms here..."
+        required
+      ></textarea>
+    </div>
+
+    <!-- Medications -->
+    <h4 class="mt-5 mb-3 text-secondary fw-semibold border-bottom pb-2">Medications</h4>
+
+    <div
+      *ngFor="let med of prescription.medications; let i = index"
+      class="border rounded p-3 mb-3 bg-light position-relative shadow-sm"
+    >
+      <div class="row g-3 align-items-center">
+        <div class="col-md-4">
+          <input
+            type="text"
+            [(ngModel)]="med.name"
+            name="name{{ i }}"
+            class="form-control"
+            placeholder="Medication Name"
+            required
+            maxlength="100"
+            title="Enter the medication name"
+          />
+        </div>
+        <div class="col-md-4">
+          <input
+            type="text"
+            [(ngModel)]="med.usage"
+            name="usage{{ i }}"
+            class="form-control"
+            placeholder="Usage Instructions"
+            required
+            maxlength="200"
+            title="How to use the medication"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            [(ngModel)]="med.duration"
+            name="duration{{ i }}"
+            class="form-control"
+            placeholder="Duration (e.g., 5 days)"
+            required
+            maxlength="50"
+            title="Duration for medication use"
+          />
+        </div>
+        <!-- <label>
+        Delivered:
+        <input type="checkbox" [(ngModel)]="med.delivered" name="delivered{{i}}" />
+      </label> -->
+        <div class="col-md-1 text-end">
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            (click)="removeMedication(i)"
+            aria-label="Remove medication"
+            title="Remove medication"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex gap-3 mt-4">
+      <button
+        type="button"
+        class="btn btn-outline-secondary fw-semibold"
+        (click)="addMedication()"
+        aria-label="Add a new medication"
+      >
+        + Add Medication
+      </button>
+      <button type="submit" class="btn btn-primary ms-auto fw-semibold d-flex align-items-center">
+        <span class="me-2">💾</span> Update Prescription
+      </button>
+    </div>
+  </form>
+</div>
+
+  <aside class="sidebar right-sidebar">
+    <h3>🩺 Quick Reminders</h3>
+    <p>"The best doctor gives the least medicine." – Benjamin Franklin</p>
+    <p>Always read the label carefully before taking medication.</p>
+  </aside>
+</div>

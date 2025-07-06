@@ -1,178 +1,208 @@
-/* Profile Container */
-.profile-container {
-  position: relative;
-  max-width: 1400px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+/* Container and Layout */
+.profile-settings-container {
+  display: flex;
+  gap: 40px;
+  background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+  min-height: 100vh;
+  padding: 50px 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
-  z-index: 1;
+  color: #1e293b;
 }
 
-h3 {
+.profile-content-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;    /* vertical center */
+  justify-content: center; /* horizontal center */
+  min-height: 100vh;      /* full viewport height to center inside */
+}
+
+/* Main content container */
+.profile-container {
+  max-width: 1100px;
+  background: rgba(255 255 255 / 0.6);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 32px rgb(14 165 233 / 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255 255 255 / 0.3);
+  
+}
+
+/* Title */
+.profile-container h3 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: #0c4a6e;
   text-align: center;
-  color: #3f3f3f;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 20px;
+  user-select: none;
+  letter-spacing: 1.3px;
 }
 
+/* Grid for reclamations */
+.reclamation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+/* Individual card with glass effect */
 .reclamation-card {
-  padding: 20px;
-  margin: 15px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #f9f9f9;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  background: rgba(255 255 255 / 0.5);
+  border-radius: 20px;
+  padding: 30px 35px;
+  box-shadow: 0 8px 32px rgba(0, 118, 255, 0.12);
+  border: 1.5px solid rgba(255 255 255 / 0.4);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  cursor: default;
+  outline-offset: 5px;
+  position: relative;
 }
 
+.reclamation-card:focus-within,
 .reclamation-card:hover {
-  background-color: #f1f1f1;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 48px rgba(0, 99, 255, 0.3);
+  transform: translateY(-6px);
+  border-color: #0ea5e9;
+  outline: none;
+}
+
+/* Icon before reclamation and answer */
+.reclamation-card p strong {
+  font-weight: 700;
+  color: #0284c7;
+  position: relative;
+  padding-left: 28px;
+  user-select: none;
+}
+
+.reclamation-card p strong:first-child::before {
+  content: "📝";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.reclamation-card p strong:last-child::before {
+  content: "💬";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
 }
 
 .reclamation-card p {
-  margin: 10px 0;
-  font-size: 1.1em;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #334155;
+  margin-bottom: 1.3rem;
+  word-break: break-word;
 }
 
-strong {
-  color: #555;
-  font-weight: 600;
-}
-
-/* No Recs Message */
+/* No reclamations message with icon */
 .no-recs-message {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #64748b;
   text-align: center;
-  color: #888;
-  font-size: 1.2em;
-  margin-top: 20px;
+  margin-top: 100px;
+  user-select: none;
+  position: relative;
+  padding-left: 50px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Animated Background Gradient */
-body {
-  background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
+.no-recs-message::before {
+  content: "📭";
   position: absolute;
-  top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  opacity: 0.6;
 }
 
-/* Keyframe for Gradient Animation */
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Floating Avatar Animation */
-.floating-avatar {
-  position: absolute;
-  top: -50px; /* Start above the visible area */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px; /* Size of the avatar */
-  height: 80px; /* Size of the avatar */
-  background-image: url('https://via.placeholder.com/80'); /* Use your avatar image URL here */
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  animation: floatAvatar 10s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes floatAvatar {
-  0% {
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%) rotate(0deg);
-  }
-  25% {
-    top: 20%;
-    left: 40%;
-    transform: translateX(-50%) rotate(90deg);
-  }
-  50% {
-    top: 40%;
-    left: 60%;
-    transform: translateX(-50%) rotate(180deg);
-  }
-  75% {
-    top: 20%;
-    left: 80%;
-    transform: translateX(-50%) rotate(270deg);
-  }
-  100% {
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%) rotate(360deg);
-  }
-}
-
-@media (max-width: 768px) {
-  .profile-container {
-    padding: 15px;
-  }
-  
-  h3 {
-    font-size: 1.3em;
-  }
-
-  .reclamation-card p {
-    font-size: 1em;
-  }
-
-  .floating-avatar {
-    width: 60px;
-    height: 60px;
-  }
-}
-/* General Layout */
-.profile-settings-container {
-  display: flex;
-  align-items: flex-start;
-  background: #f4f7fc;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.reclamation-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
-
+/* Pagination */
 .pagination-controls {
+  margin-top: 50px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  justify-content: center;
+  gap: 25px;
+  user-select: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2563eb;
 }
 
 .pagination-controls button {
-  padding: 8px 12px;
-  margin: 0 10px;
+  background-color: #3b82f6;
   border: none;
-  background: #007bff;
-  color: white;
-  border-radius: 5px;
+  padding: 14px 32px;
+  border-radius: 9999px;
   cursor: pointer;
+  transition: background-color 0.35s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px rgb(59 130 246 / 0.45);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.pagination-controls button:hover:not(:disabled),
+.pagination-controls button:focus:not(:disabled) {
+  background-color: #1e40af;
+  outline: none;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgb(30 64 175 / 0.75);
 }
 
 .pagination-controls button:disabled {
-  background: #ccc;
+  background-color: #a5b4fc;
+  color: #c7d2fe;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .reclamation-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .profile-container {
+    padding: 30px 25px;
+  }
+  .profile-container h3 {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .profile-container {
+    padding: 25px 20px;
+  }
+
+  .reclamation-card {
+    padding: 25px 25px;
+  }
+
+  .pagination-controls {
+    flex-direction: column;
+    gap: 16px;
+    font-size: 1.1rem;
+  }
+
+  .pagination-controls button {
+    width: 100%;
+    padding: 14px 0;
+  }
 }

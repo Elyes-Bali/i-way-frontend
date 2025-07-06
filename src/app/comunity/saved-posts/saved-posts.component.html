@@ -1,30 +1,39 @@
 <div class="profile-settings-container">
   <app-doc-sidebar></app-doc-sidebar>
   <div class="saved-posts">
-      <h2>Saved Posts</h2>
-      <div *ngIf="savedPosts.length === 0">
-          <p>No saved posts yet.</p>
+    <h2>Saved Posts</h2>
+
+    <div *ngIf="savedPosts.length === 0" class="no-posts-msg">
+      <p>No saved posts yet.</p>
+    </div>
+
+    <div class="posts-grid">
+      <div *ngFor="let post of paginatedPosts" class="post-card" tabindex="0" [attr.aria-label]="'Saved post by ' + post.author">
+        <div class="post-header">
+          <h3 class="post-author">{{ post.author }}</h3>
+          <span class="post-date">{{ post.createdDate | date:'mediumDate' }}</span>
+        </div>
+
+        <p class="post-content">
+          {{ post.showFullContent ? post.content : (post.content | slice: 0:150) + '...' }}
+        </p>
+        <a class="read-toggle" (click)="post.showFullContent = !post.showFullContent" role="button" tabindex="0">
+          {{ post.showFullContent ? 'Show Less ▲' : 'Read More ▼' }}
+        </a>
+
+        <div class="post-image-container" *ngIf="post.postImage">
+          <img [src]="post.postImage" alt="Image preview for post by {{post.author}}" class="image-preview" />
+        </div>
+
+        <button class="btn btn-danger btn-remove" (click)="removePost(post.id)" [attr.aria-label]="'Remove post by ' + post.author">
+          Remove
+        </button>
       </div>
-      
-      <div class="posts-grid">
-          <div *ngFor="let post of paginatedPosts" class="post-card">
-              <h3>{{ post.author }}</h3>
-              <h3>{{ post.createdDate }}</h3>
-              <p>{{ post.showFullContent ? post.content : post.content | slice: 0:150 }}...</p>
-              <a class="read" (click)="post.showFullContent = !post.showFullContent">
-                  {{ post.showFullContent ? 'Show Less' : 'Read More' }}
-              </a>
-              <div class="postimage">
-                  <img [src]="post.postImage" alt="Image Preview" class="image-preview" />
-              </div>
-              <button class="btn btn-danger mt-2" (click)="removePost(post.id)">Remove</button>
-          </div>
-      </div>
-      
-      <div *ngIf="savedPosts.length > 0" class="pagination-buttons">
-          <button class="pagination-button" (click)="prevPage()" [disabled]="currentPage === 0">← Previous</button>
-          <button class="pagination-button" (click)="nextPage()" [disabled]="(currentPage + 1) * postsPerPage >= savedPosts.length">Next →</button>
-      </div>
+    </div>
+
+    <div *ngIf="savedPosts.length > 0" class="pagination-buttons">
+      <button class="pagination-button" (click)="prevPage()" [disabled]="currentPage === 0">← Previous</button>
+      <button class="pagination-button" (click)="nextPage()" [disabled]="(currentPage + 1) * postsPerPage >= savedPosts.length">Next →</button>
+    </div>
   </div>
 </div>
-  

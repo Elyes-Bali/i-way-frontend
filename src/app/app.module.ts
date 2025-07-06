@@ -42,6 +42,13 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { PharmacySignupComponent } from './pharmacy-signup/pharmacy-signup.component';
 import { AllPharmaciesComponent } from './admin/all-pharmacies/all-pharmacies.component';
 import { SearchPrescriptionsComponent } from './pharmacy/search-prescriptions/search-prescriptions.component';
+import { AddPrescriptionComponent } from './add-prescription/add-prescription.component';
+import { DoctorPrescriptionsComponent } from './doctor-prescriptions/doctor-prescriptions.component';
+import { EditPrescriptionComponent } from './edit-prescription/edit-prescription.component';
+import { MyPrescriptionsComponent } from './patient/my-prescriptions/my-prescriptions.component';
+import { LabInterpreterComponent } from './patient/lab-interpreter/lab-interpreter.component';
+import { TestCodesComponent } from './test-codes/test-codes.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -84,6 +91,13 @@ import { SearchPrescriptionsComponent } from './pharmacy/search-prescriptions/se
     PharmacySignupComponent,
     AllPharmaciesComponent,
     SearchPrescriptionsComponent,
+    AddPrescriptionComponent,
+    DoctorPrescriptionsComponent,
+    EditPrescriptionComponent,
+    MyPrescriptionsComponent,
+    LabInterpreterComponent,
+    TestCodesComponent,
+    FooterComponent,
 
 
 

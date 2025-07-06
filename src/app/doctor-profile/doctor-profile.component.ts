@@ -73,124 +73,142 @@ export class DoctorProfileComponent {
       return;
     }
 
-    this.availabilityService.getDoctorAvailability(this.userId).subscribe(data => {
-      this.availableDays = data.map((day: any) => {
-        return {
-          dayOfWeek: day.dayOfWeek,
-          availableTimes: [day.startTime, day.endTime]
-        };
-      });
-
-      this.appointmentStatus = null;
+  this.availabilityService.getDoctorAvailability(this.userId).subscribe(data => {
+    this.availableDays = data.map((day: any) => {
+      // Build array of time ranges if they exist
+      const times = [];
+      if (day.startTime && day.endTime) {
+        times.push({ start: day.startTime, end: day.endTime });
+      }
+      if (day.secondTime && day.secondendTime) {
+        times.push({ start: day.secondTime, end: day.secondendTime });
+      }
+      if (day.thirdTime && day.thirdendTime) {
+        times.push({ start: day.thirdTime, end: day.thirdendTime });
+      }
+      return {
+        dayOfWeek: day.dayOfWeek,
+        availableTimes: times
+      };
     });
+
+    this.appointmentStatus = null;
+  });
   }
 
 
-  bookAppointment() {
-    if (!this.selectedDay || !this.selectedTime) {
-      this.appointmentStatus = {
-        message: 'Please select both a day and time.',
-        type: 'alert-danger',
-        icon: 'fas fa-exclamation-circle'
-      };
-      return;
-    }
-  
-    // Fetch doctor's available times for the selected day
-    const selectedDayData = this.availableDays.find(day => day.dayOfWeek === this.selectedDay);
-  
-    if (!selectedDayData) {
-      this.appointmentStatus = {
-        message: 'No availability data for the selected day.',
-        type: 'alert-danger',
-        icon: 'fas fa-exclamation-circle'
-      };
-      return;
-    }
-  
-    const { availableTimes } = selectedDayData;
-    const startTime = availableTimes[0]; // Doctor's start time
-    const endTime = availableTimes[1]; // Doctor's end time
-  
-    // Check if the selected time is within the available time range
-    if (this.isTimeWithinRange(this.selectedTime, startTime, endTime)) {
-      // Proceed with booking if the selected time is within the range
-      this.appointmentService.getAppointmentsForPatient(this.patientId).subscribe(existingAppointments => {
-        console.log("Checking for duplicate appointment:");
-        console.log("Selected Doctor ID:", this.userId);
-        console.log("Existing Appointments:", existingAppointments);
-  
-        // Check if any appointment exists with this doctor
-        const pendingAppointments = existingAppointments.filter(appointment => 
-          Number(appointment.doctor?.id) === this.userId && appointment.status === "PENDING"
-        );
-  
-        if (pendingAppointments.length > 0) {
-          // If there are any pending appointments, block new booking
-          this.appointmentStatus = {
-            message: 'You already have a pending appointment with this doctor. You cannot book a new one until it is accepted or rejected.',
-            type: 'alert-warning',
-            icon: 'fas fa-exclamation-triangle'
-          };
-          console.warn("Booking blocked: Existing appointment is still pending.");
-          return; // Stop further execution
-        }
-  
-        // Proceed with booking if no pending appointments exist
-        const appointment: Appointment = {
-          doctorId: this.userId,
-          patientId: this.patientId,
-          date: this.selectedDay,
-          time: this.selectedTime,
-          status: AppointmentStatus.PENDING
+bookAppointment() {
+  if (!this.selectedDay || !this.selectedTime) {
+    this.appointmentStatus = {
+      message: 'Please select both a day and time.',
+      type: 'alert-danger',
+      icon: 'fas fa-exclamation-circle'
+    };
+    return;
+  }
+
+  // Fetch doctor's available times for the selected day
+  const selectedDayData = this.availableDays.find(day => day.dayOfWeek === this.selectedDay);
+
+  if (!selectedDayData) {
+    this.appointmentStatus = {
+      message: 'No availability data for the selected day.',
+      type: 'alert-danger',
+      icon: 'fas fa-exclamation-circle'
+    };
+    return;
+  }
+
+  // Check if the selected time is within any available time range
+  if (this.isTimeWithinAnyRange(this.selectedTime, selectedDayData.availableTimes)) {
+    // Proceed with booking if valid time
+    this.appointmentService.getAppointmentsForPatient(this.patientId).subscribe(existingAppointments => {
+      console.log("Checking for duplicate appointment:");
+      console.log("Selected Doctor ID:", this.userId);
+      console.log("Existing Appointments:", existingAppointments);
+
+      // Check if any appointment exists with this doctor that is pending
+      const pendingAppointments = existingAppointments.filter(appointment => 
+        Number(appointment.doctor?.id) === this.userId && appointment.status === "PENDING"
+      );
+
+      if (pendingAppointments.length > 0) {
+        // If there are any pending appointments, block new booking
+        this.appointmentStatus = {
+          message: 'You already have a pending appointment with this doctor. You cannot book a new one until it is accepted or rejected.',
+          type: 'alert-warning',
+          icon: 'fas fa-exclamation-triangle'
         };
-  
-        this.appointmentService.bookAppointment(appointment).subscribe((response: BookingResponse) => {
-          if (response.status === 'success') {
-            this.appointmentStatus = {
-              message: response.message,
-              type: 'alert-success',
-              icon: 'fas fa-check-circle'
-            };
-  
-            setTimeout(() => {
-              $('#availabilityModal').modal('hide');
-            }, 3000);
-          } else {
-            this.appointmentStatus = {
-              message: 'Failed to book appointment. Please try again.',
-              type: 'alert-danger',
-              icon: 'fas fa-exclamation-circle'
-            };
-          }
-        }, error => {
-          console.error('Booking Error:', error);
+        console.warn("Booking blocked: Existing appointment is still pending.");
+        return; // Stop further execution
+      }
+
+      // Proceed with booking if no pending appointments exist
+      const appointment: Appointment = {
+        doctorId: this.userId,
+        patientId: this.patientId,
+        date: this.selectedDay,
+        time: this.selectedTime,
+        status: AppointmentStatus.PENDING
+      };
+
+      this.appointmentService.bookAppointment(appointment).subscribe((response: BookingResponse) => {
+        if (response.status === 'success') {
+          this.appointmentStatus = {
+            message: response.message,
+            type: 'alert-success',
+            icon: 'fas fa-check-circle'
+          };
+
+          setTimeout(() => {
+            $('#availabilityModal').modal('hide');
+          }, 3000);
+        } else {
           this.appointmentStatus = {
             message: 'Failed to book appointment. Please try again.',
             type: 'alert-danger',
             icon: 'fas fa-exclamation-circle'
           };
-        });
+        }
+      }, error => {
+        console.error('Booking Error:', error);
+        this.appointmentStatus = {
+          message: 'Failed to book appointment. Please try again.',
+          type: 'alert-danger',
+          icon: 'fas fa-exclamation-circle'
+        };
       });
-    } else {
-      this.appointmentStatus = {
-        message: `The selected time is outside the doctor's available hours (${startTime} - ${endTime}). Please choose a time within the available range.`,
-        type: 'alert-danger',
-        icon: 'fas fa-exclamation-circle'
-      };
+    });
+  } else {
+    this.appointmentStatus = {
+      message: `The selected time is outside the doctor's available hours. Please choose a time within the available ranges.`,
+      type: 'alert-danger',
+      icon: 'fas fa-exclamation-circle'
+    };
+  }
+}
+
+
+/**
+ * Check if selectedTime fits in ANY of the provided time ranges.
+ * @param selectedTime string in "HH:mm" format
+ * @param timeRanges array of {start: string, end: string}
+ * @returns true if within any range, else false
+ */
+isTimeWithinAnyRange(selectedTime: string, timeRanges: {start: string, end: string}[]): boolean {
+  const selectedDate = this.convertToDate(selectedTime);
+
+  for (const range of timeRanges) {
+    const startDate = this.convertToDate(range.start);
+    const endDate = this.convertToDate(range.end);
+    if (selectedDate >= startDate && selectedDate <= endDate) {
+      return true; // fits in this range
     }
   }
-  
-  // Helper function to check if the time is within the range
-  isTimeWithinRange(selectedTime: string, startTime: string, endTime: string): boolean {
-    // Convert times to Date objects (using a fixed date since only time matters)
-    const selectedDate = this.convertToDate(selectedTime);
-    const startDate = this.convertToDate(startTime);
-    const endDate = this.convertToDate(endTime);
-  
-    return selectedDate >= startDate && selectedDate <= endDate;
-  }
-  
+
+  return false; // not within any range
+}
+
   // Helper function to convert time to Date object (using a fixed date)
   convertToDate(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number); // Convert time to hours and minutes
@@ -211,10 +229,13 @@ export class DoctorProfileComponent {
     return `${hours}:${minutes}`; // Return formatted time (without seconds)
   }
 
-  getFormattedContent(content: string): string {
-    // Convert newlines to <br> and preserve spaces using <pre> tag
-    return content.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
+ getFormattedContent(content: string | null | undefined): string {
+  if (!content) {
+    return '';  // return empty string if content is null/undefined/empty
   }
+  return content.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
+}
+
 
   
 }

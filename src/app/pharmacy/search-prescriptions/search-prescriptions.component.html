@@ -1,82 +1,195 @@
-<div class="body">
+<div class="page-wrapper">
+  <div class="body">
     <div class="sidebar">
       <div class="sidebar-card">
-        <img src="../../../assets/imgs/2397461.jpg"  alt="Pharmacy" class="sidebar-image" />
-        <h3>Pharmacy Search</h3>
-        <p>Search for prescriptions by code to access medical details quickly.</p>
+        <img
+          src="../../../assets/imgs/2397461.jpg"
+          alt="Pharmacy"
+          class="sidebar-image"
+        />
+        <h2 class="Pharmacy-Search">Pharmacy Search</h2>
+        <p>
+          Search for prescriptions by code to access medical details quickly.
+        </p>
         <div class="search-container">
           <label for="searchCode">Search by Code:</label>
-          <input 
-            type="text" 
-            id="searchCode" 
-            [(ngModel)]="searchCode" 
-            (input)="filterFiles()" 
+          <input
+            type="text"
+            id="searchCode"
+            [(ngModel)]="searchCode"
+            (input)="filterPrescriptions()"
             placeholder="Enter prescription code"
           />
         </div>
+
+        <div class="alternative-search">
+          <input
+            [(ngModel)]="medicationName"
+            placeholder="Enter medication name"
+            type="text"
+          />
+          <button (click)="fetchAlternatives()" [disabled]="loading">
+            <span *ngIf="!loading">Get Alternatives</span>
+            <span *ngIf="loading" class="loader"></span>
+          </button>
+        </div>
+
+        <div *ngIf="alternatives">
+          <h3>Alternatives:</h3>
+          <pre>{{ alternatives }}</pre>
+        </div>
+        <p class="doctor-warning">
+          ⚠️ Please consult the prescribing doctor before replacing any
+          medication with an alternative.
+        </p>
       </div>
     </div>
-  
+
     <div class="main-content">
       <!-- Display filtered results only if search code matches -->
-      <div class="prescription-container" *ngIf="filteredMedicalFiles.length > 0; else noPrescriptions">
+      <div
+        class="prescription-container"
+        *ngIf="filteredPrescriptions.length > 0; else noPrescriptions"
+      >
+        <h2 class="page-heading">🔍 View Medical Prescription Details</h2>
+
         <div class="prescription-card">
           <div class="prescription-header">
             <h2>HealLink</h2>
-            <h2><b>{{ filteredMedicalFiles[currentIndex]?.doctor.name | uppercase}}</b></h2>
-            <h3 class="doctor-info">Speciality: {{ filteredMedicalFiles[currentIndex]?.doctor.speciality }}</h3>
-          <p class="symptoms-text" [innerHTML]="filteredMedicalFiles[currentIndex] ? getFormattedContent(filteredMedicalFiles[currentIndex]?.code) : ''"></p>
-          <div 
-          *ngIf="filteredMedicalFiles[currentIndex]?.closed" 
-          class="closed-message"
-        >
-          ✅ This prescription has been <strong>delivered</strong>.
-        </div>
-        
-        </div>
-    
+            <h2>
+              <b>{{
+                filteredPrescriptions[currentIndex]?.doctor.name | uppercase
+              }}</b>
+            </h2>
+            <h3 class="doctor-info">
+              Speciality:
+              {{ filteredPrescriptions[currentIndex]?.doctor.speciality }}
+            </h3>
+            <p
+              class="symptoms-text"
+              [innerHTML]="
+                filteredPrescriptions[currentIndex]
+                  ? getFormattedContent(
+                      filteredPrescriptions[currentIndex]?.code
+                    )
+                  : ''
+              "
+            ></p>
+            <div
+              *ngIf="filteredPrescriptions[currentIndex]?.closed"
+              class="closed-message"
+            >
+              ✅ This prescription has been <strong>delivered</strong>.
+            </div>
+          </div>
+
           <h3 class="prescription-title">MEDICAL PRESCRIPTION</h3>
-    
+
           <div class="prescription-body">
             <div class="patient-info">
-              <p><strong>Patient:</strong> {{ filteredMedicalFiles[currentIndex]?.patient.name | uppercase }}</p>
-              <p><strong>Date:</strong> {{ formatDate(filteredMedicalFiles[currentIndex]?.createdAt) }}</p>
+              <p>
+                <i class="fas fa-user"> :</i>
+                <!-- <strong>Patient:</strong> -->
+                {{
+                  filteredPrescriptions[currentIndex]?.patient.name | uppercase
+                }}
+              </p>
+              <p>
+                <i class="fas fa-calendar-alt"></i>
+                <!-- <strong>Date:</strong> -->
+                {{ formatDate(filteredPrescriptions[currentIndex]?.createdAt) }}
+              </p>
             </div>
-    
+
             <div class="separator"></div>
-    
+
             <p class="rx-label">Medicines:</p>
-            <p class="prescription-text" [innerHTML]="filteredMedicalFiles[currentIndex] ? getFormattedContent(filteredMedicalFiles[currentIndex]?.prescriptions) : ''"></p>
-    
+            <div class="prescription-text">
+              <ul class="medications-list">
+                <li
+                  *ngFor="
+                    let med of filteredPrescriptions[currentIndex]?.medications;
+                    let i = index
+                  "
+                >
+                  <div class="med-item">
+                    <span class="med-name">{{ med.name }} - </span>
+                    <span class="med-info"
+                      >{{ med.usageInstructions }} ({{ med.duration }})</span
+                    >
+                    <span
+                      class="badge"
+                      [ngClass]="med.delivered ? 'success' : 'danger'"
+                    >
+                      {{ med.delivered ? "✔ Delivered" : "✘ Not Delivered" }}
+                    </span>
+
+                    <!-- Only show the button if not delivered -->
+                    <button
+                      *ngIf="!med.delivered"
+                      class="btn btn-sm btn-outline-success delevired-button"
+                      (click)="toggleDelivered(i)"
+                    >
+                      ✔
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
             <div class="separator"></div>
-    
+
             <h3><strong>Symptoms:</strong></h3>
-            <p class="symptoms-text" [innerHTML]="filteredMedicalFiles[currentIndex] ? getFormattedContent(filteredMedicalFiles[currentIndex]?.symptoms) : ''"></p>
+            <p
+              class="symptoms-text"
+              [innerHTML]="
+                filteredPrescriptions[currentIndex]
+                  ? getFormattedContent(
+                      filteredPrescriptions[currentIndex]?.symptoms
+                    )
+                  : ''
+              "
+            ></p>
           </div>
-    
+
           <div class="doctor-signature">
             <p><strong>Doctor’s Signature:</strong></p>
-            <img [src]="filteredMedicalFiles[currentIndex]?.doctor.signatureUrl" alt="Doctor's Signature" class="signature-image" />
+            <img
+              [src]="filteredPrescriptions[currentIndex]?.doctor.signatureUrl"
+              alt="Doctor's Signature"
+              class="signature-image"
+            />
           </div>
-          
+
           <div class="prescription-footer">
-            <p>{{ filteredMedicalFiles[currentIndex]?.doctor.adress }} | +216{{ filteredMedicalFiles[currentIndex]?.doctor.number }} | {{ filteredMedicalFiles[currentIndex]?.doctor.eaddress }}</p>
+            <p>
+              {{ filteredPrescriptions[currentIndex]?.doctor.adress }} | +216{{
+                filteredPrescriptions[currentIndex]?.doctor.number
+              }}
+              | {{ filteredPrescriptions[currentIndex]?.doctor.eaddress }}
+            </p>
           </div>
 
-
-          <div class="action-buttons">
-            <button 
-              class="bttn-close " 
-              (click)="closeMedicalFile(filteredMedicalFiles[currentIndex])"
-              [disabled]="filteredMedicalFiles[currentIndex]?.closed"
-            >
-              {{ filteredMedicalFiles[currentIndex]?.closed ? 'File Closed' : 'Close File' }}
+          <div
+            class="availablitily-buttons"
+            *ngIf="
+              filteredPrescriptions[currentIndex]?.status;
+              else unavailableNotice
+            "
+          >
+            <button class="btn btn-danger mt-3" (click)="markAsUnavailable()">
+              Medication Adjustment Request
             </button>
           </div>
-          
+
+          <ng-template #unavailableNotice>
+            <div class="alert alert-warning mt-3" role="alert">
+              ❌ Prescription marked as <strong>Not Available</strong>.
+            </div>
+          </ng-template>
         </div>
       </div>
-  
+
       <ng-template #noPrescriptions>
         <div class="no-prescriptions">
           <p>No medical files found with the provided code.</p>
@@ -84,4 +197,8 @@
       </ng-template>
     </div>
   </div>
-  
+
+  <div class="branding-footer">
+    <p>🔒 Powered by HealLink – Secure Digital Prescriptions</p>
+  </div>
+</div>

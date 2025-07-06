@@ -1,80 +1,190 @@
-<div class="medical-file-container container">
-  <div class="pulse-circle"></div>
-  <h1 class="text-center mb-4"><strong>🩺 Medical File</strong></h1>
+<div class="medical-layout">
+  
+  <div class="left-panel">
+    <div class="medical-file-container container">
+      <div class="pulse-circle"></div>
 
-  <div *ngIf="medicalFile" class="row justify-content-center">
-    <!-- Personal Info Section -->
-    <div class="col-12 col-md-10 form-section mb-3">
-      <h4 class="section-title">
-        <i class="fas fa-user-md me-2"></i> Personal Information
-      </h4>
-      <div class="row g-3">
-        <div class="col-md-4">
-          <label for="bloodType" class="form-label">Blood Type</label>
-          <input id="bloodType" type="text" [(ngModel)]="medicalFile.bloodType" class="form-control" placeholder="e.g., A+, O-" />
+      <h1 class="text-center mb-5"><strong>🩺 Patient Medical File</strong></h1>
+
+      <div *ngIf="medicalFile" class="row justify-content-center">
+        <div class="col-12 col-md-10 form-section mb-4 bg-section-soft">
+          <h4 class="section-title" role="button" aria-expanded="true" aria-controls="personalInfoCollapse">
+            <i class="fas fa-user-md me-3 icon-bg"></i> Personal Information
+            <i class="fas fa-chevron-up section-toggle"></i>
+          </h4>
+          <div id="personalInfoCollapse" class="section-content">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label for="bloodType" class="form-label">Blood Type</label>
+                <input
+                  id="bloodType"
+                  type="text"
+                  [(ngModel)]="medicalFile.bloodType"
+                  class="form-control"
+                  placeholder="e.g., A+, O-"
+                />
+              </div>
+              <div class="col-md-4">
+                <label for="height" class="form-label">Height (cm)</label>
+                <input
+                  id="height"
+                  type="number"
+                  [(ngModel)]="medicalFile.height"
+                  class="form-control"
+                  placeholder="e.g., 170"
+                />
+              </div>
+              <div class="col-md-4">
+                <label for="weight" class="form-label">Weight (Kg)</label>
+                <input
+                  id="weight"
+                  type="number"
+                  [(ngModel)]="medicalFile.weight"
+                  class="form-control"
+                  placeholder="e.g., 65"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-10 form-section mb-4 bg-section-soft">
+          <h4 class="section-title" role="button" aria-expanded="true" aria-controls="visitInfoCollapse">
+            <i class="fas fa-calendar-check me-3 icon-bg"></i> Visit Information
+            <i class="fas fa-chevron-up section-toggle"></i>
+          </h4>
+          <div id="visitInfoCollapse" class="section-content">
+            <div class="mb-3">
+              <label for="reasons" class="form-label"
+                >Purpose of the Visit <span class="text-danger">*</span></label
+              >
+              <textarea
+                id="reasons"
+                [(ngModel)]="medicalFile.reasons"
+                class="form-control"
+                rows="3"
+                required
+                placeholder="Describe the patient's primary reason for visit..."
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="symptoms" class="form-label"
+                >Symptoms <span class="text-danger">*</span></label
+              >
+               <small class="text-muted d-block mb-2"
+                >AI will help you predict the Disease</small
+              >
+              <textarea
+                id="symptoms"
+                [(ngModel)]="medicalFile.symptoms"
+                (ngModelChange)="symptomsInput$.next($event)"
+                class="form-control"
+                rows="3"
+                required
+                placeholder="List all symptoms and their duration..."
+              ></textarea>
+            </div>
+          </div>
         </div>
 
-        <div class="col-md-4">
-          <label for="height" class="form-label">Height (cm)</label>
-          <input id="height" type="number" [(ngModel)]="medicalFile.height" class="form-control" placeholder="e.g., 170" />
+        <div class="col-12 col-md-10 form-section mb-4 bg-section-soft">
+          <h4 class="section-title" role="button" aria-expanded="true" aria-controls="medicationHistoryCollapse">
+            <i class="fas fa-pills me-3 icon-bg"></i> Medication History
+            <i class="fas fa-chevron-up section-toggle"></i>
+          </h4>
+          <div id="medicationHistoryCollapse" class="section-content">
+            <div class="mb-3">
+              <label for="previousMedication" class="form-label"
+                >Previous Medication</label
+              >
+              <textarea
+                id="previousMedication"
+                [(ngModel)]="medicalFile.previousMedication"
+                class="form-control"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="prescriptions" class="form-label"
+                >Prescriptions <span class="text-danger">*</span></label
+              >
+              <small class="text-muted d-block mb-2"
+                >Example: Medicine Name - way of use - number of days</small
+              >
+              <textarea
+                id="prescriptions"
+                [(ngModel)]="medicalFile.prescriptions"
+                class="form-control"
+                rows="3"
+                required
+                placeholder="Outline the proposed treatment plan, including medications, follow-ups, etc..."
+              ></textarea>
+            </div>
+          </div>
         </div>
 
-        <div class="col-md-4">
-          <label for="weight" class="form-label">Weight (Kg)</label>
-          <input id="weight" type="number" [(ngModel)]="medicalFile.weight" class="form-control" placeholder="e.g., 65" />
+        <div class="col-12 col-md-10 form-section mb-4 bg-section-soft">
+          <h4 class="section-title" role="button" aria-expanded="true" aria-controls="additionalNotesCollapse">
+            <i class="fas fa-notes-medical me-3 icon-bg"></i> Additional Notes
+            <i class="fas fa-chevron-up section-toggle"></i>
+          </h4>
+          <div id="additionalNotesCollapse" class="section-content">
+            <div class="mb-3">
+              <textarea
+                id="additionalNotes"
+                [(ngModel)]="medicalFile.additionalNotes"
+                class="form-control"
+                rows="3"
+                placeholder="Any additional notes"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-10 text-center mt-5">
+          <button
+            *ngIf="testMedicalFiles.length == 0"
+            class="btn btn-success btn-lg w-100 shadow"
+            (click)="saveMedicalFile()"
+          >
+            <i class="fas fa-save me-2"></i> Save
+          </button>
+          <button
+            *ngIf="testMedicalFiles.length != 0"
+            class="btn btn-primary btn-lg w-100 shadow"
+            (click)="updateMedicalFile()"
+          >
+            <i class="fas fa-sync-alt me-2"></i> Update
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Visit Info Section -->
-    <div class="col-12 col-md-10 form-section">
-      <h4 class="section-title">
-        <i class="fas fa-calendar-check me-2"></i> Visit Information
-      </h4>
-      <div class="mb-3">
-        <label for="reasons" class="form-label">Purpose of the Visit <span class="text-danger">*</span></label>
-        <textarea id="reasons" [(ngModel)]="medicalFile.reasons" class="form-control" rows="3" required></textarea>
+  <div class="right-panel">
+    <div class="ai-predict-container-enhanced">
+      <div class="ai-header">
+        <div class="ai-icon-wrapper">
+          <div class="ai-icon-glow"></div>
+          <i class="fas fa-user-md ai-icon"></i>
+        </div>
+        <h4 class="ai-title">AI Diagnosis Insight</h4>
       </div>
-      <div class="mb-3">
-        <label for="symptoms" class="form-label">Symptoms <span class="text-danger">*</span></label>
-        <textarea id="symptoms" [(ngModel)]="medicalFile.symptoms" class="form-control" rows="3" required></textarea>
-      </div>
-    </div>
 
-    <!-- Medication History Section -->
-    <div class="col-12 col-md-10 form-section">
-      <h4 class="section-title">
-        <i class="fas fa-pills me-2"></i> Medication History
-      </h4>
-      <div class="mb-3">
-        <label for="previousMedication" class="form-label">Previous Medication</label>
-        <textarea id="previousMedication" [(ngModel)]="medicalFile.previousMedication" class="form-control" rows="3"></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="prescriptions" class="form-label">Prescriptions <span class="text-danger">*</span></label>
-        <small class="text-muted d-block mb-2">Example: Medicine Name - way of use</small>
-        <textarea id="prescriptions" [(ngModel)]="medicalFile.prescriptions" class="form-control" rows="3" required></textarea>
-      </div>
-    </div>
+      <div class="ai-body" aria-live="polite">
+        <ng-container *ngIf="predictedDisease; else noPrediction">
+          <div class="ticker-box">
+            <span class="ticker-label">Prediction:</span>
+            <span class="ticker-value">{{ predictedDisease }}</span>
+          </div>
+        </ng-container>
 
-    <!-- Additional Notes Section -->
-    <div class="col-12 col-md-10 form-section">
-      <h4 class="section-title">
-        <i class="fas fa-notes-medical me-2"></i> Additional Notes
-      </h4>
-      <div class="mb-3">
-        <textarea id="additionalNotes" [(ngModel)]="medicalFile.additionalNotes" class="form-control" rows="3" placeholder="Any additional notes"></textarea>
+        <ng-template #noPrediction>
+          <p class="ai-placeholder">
+            <i class="fas fa-spinner fa-spin me-2 text-muted"></i>
+            Waiting for symptoms to predict...
+          </p>
+        </ng-template>
       </div>
-    </div>
-
-    <!-- Buttons Section -->
-    <div class="col-12 col-md-10 text-center mt-4">
-      <button *ngIf="testMedicalFiles.length == 0" class="btn btn-success btn-lg w-100 shadow" (click)="saveMedicalFile()">
-        <i class="fas fa-save me-2"></i> Save
-      </button>
-      <button *ngIf="testMedicalFiles.length != 0" class="btn btn-primary btn-lg w-100 shadow" (click)="updateMedicalFile()">
-        <i class="fas fa-sync-alt me-2"></i> Update
-      </button>
     </div>
   </div>
 </div>

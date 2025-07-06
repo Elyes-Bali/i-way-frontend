@@ -1,0 +1,73 @@
+<div class="profile-settings-container">
+  <app-doc-sidebar></app-doc-sidebar>
+
+
+
+<div class="prescription-list-container">
+  <div class="header">
+    <h2>📝 My Prescriptions</h2>
+    <p class="subtitle">
+      Review all prescriptions you've issued for your patients.
+    </p>
+  </div>
+
+  <div class="no-prescriptions" *ngIf="prescriptions.length === 0">
+    <p>You haven't created any prescriptions yet.</p>
+  </div>
+
+  <div class="prescription-table" *ngIf="prescriptions.length > 0">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Symptoms</th>
+          <th>Status</th>
+          <th>Medications</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pres of prescriptions">
+          <td>
+            <strong>{{ pres.patient?.name }}</strong
+            ><br />
+            <small>{{ pres.patient?.email }}</small>
+          </td>
+          <td>{{ pres.symptoms }}</td>
+          <td>
+            <span
+              class="status-badge"
+              [ngClass]="pres.status ? 'delivered' : 'pending'"
+            >
+              {{ pres.status ? "Submitted" : "No available Medication" }}
+            </span>
+          </td>
+          <td>
+            <ul class="medications-list">
+              <li *ngFor="let med of pres.medications">
+                <div class="med-item">
+                  <span class="med-name">{{ med.name }}</span>
+                  <span class="med-info"
+                    >{{ med.usageInstructions }} ({{ med.duration }})</span
+                  >
+                  <span
+                    class="badge"
+                    [ngClass]="med.delivered ? 'success' : 'danger'"
+                  >
+                    {{ med.delivered ? "✔ Delivered" : "✘ Not Delivered" }}
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="editPrescription(pres)">
+              Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

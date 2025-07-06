@@ -2,9 +2,9 @@
   <app-doc-sidebar></app-doc-sidebar>
   <div class="content">
     <div class="table-container">
-        <div class="header">
-      <p>My Patients</p>
-    </div>
+      <div class="header">
+        <p>My Patients / Medical Files</p>
+      </div>
 
       <div *ngIf="patientsWithAcceptedAppointments.length === 0">
         You Have No Patients Yet...
@@ -20,19 +20,42 @@
             <th>Email</th>
             <th>Phone Number</th>
             <th>Medical File</th>
+            <th>All Prescription</th>
+            <th>Prescription</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let patient of patientsWithAcceptedAppointments">
-            <td><b>{{ patient.name }}</b></td>
+            <td>
+              <b>{{ patient.name }}</b>
+            </td>
             <td>{{ patient.email }}</td>
             <td>{{ patient.number }}</td>
             <td>
-                <button class="btn file-btn" 
-                        (click)="navigateToMedicalFile(patient.id)">
-                  Medical File
-                </button>
-              </td>
+              <button
+                class="btn file-btn"
+                (click)="navigateToMedicalFile(patient.id)"
+              >
+                Medical File
+              </button>
+            </td>
+
+            <td>
+              <button
+                class="btn file-btn"
+                (click)="navigateToDoctorPrescriptions(patient.id)"
+              >
+                My Prescriptions
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn file-btn"
+                (click)="navigateToPrescription(patient.id)"
+              >
+                Add Prescription
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

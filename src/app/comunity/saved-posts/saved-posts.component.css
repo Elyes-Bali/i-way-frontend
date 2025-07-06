@@ -1,66 +1,205 @@
+/* General Layout */
 .profile-settings-container {
   display: flex;
-  align-items: flex-start;
-  background: #f4f7fc;
-  min-height: 75vh;
-  padding: 20px;
+  gap: 40px;
+  background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+  min-height: 100vh;
+   padding: 50px 15px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
 }
 
 .saved-posts {
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
+  width: 100%;
+  text-align: left;
+}
+
+.saved-posts h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #004085;
   text-align: center;
+}
+
+.no-posts-msg p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  text-align: center;
+  margin-top: 40px;
 }
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
   justify-content: center;
 }
 
 .post-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 5px;
-  background: #f9f9f9;
+  background: #fff;
+   position: relative; /* Add this */
+  padding: 20px 25px 60px 25px; 
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  border: 1px solid #e1e7ec;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
 }
 
-button:hover {
-  background-color: #e04747;
+.post-card:hover,
+.post-card:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgb(0 0 0 / 0.15);
+  outline: none;
 }
 
-.postimage img {
-  width: 50% !important;
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.read {
+.post-author {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #007bff;
+  margin: 0;
+}
+
+.post-date {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.post-content {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 8px;
+  white-space: pre-line;
+}
+
+.read-toggle {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #007bff;
+  font-weight: 600;
   cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+  text-decoration: underline;
+}
+
+.read-toggle:hover,
+.read-toggle:focus {
+  color: #0056b3;
+  outline: none;
+}
+
+.post-image-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.post-image-container img.image-preview {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.08);
+  transition: transform 0.3s ease;
+}
+
+.post-image-container img.image-preview:hover {
+  transform: scale(1.03);
+}
+
+.btn-remove {
+  align-self: flex-start;
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  position: absolute; /* Change from static */
+  bottom: 15px;       /* Distance from bottom */
+  left: 20px;         /* Distance from left */
+  /* keep the rest as is */
+  align-self: unset;  /* Remove flex alignment override */
+  width: auto;        /* reset width if set by responsive */
+  box-shadow: 0 2px 6px rgb(220 53 69 / 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-remove:hover,
+.btn-remove:focus {
+  background-color: #c82333;
+  box-shadow: 0 4px 12px rgb(200 35 51 / 0.7);
+  outline: none;
 }
 
 .pagination-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 15px;
+  margin-top: 30px;
 }
 
 .pagination-button {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 12px 20px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgb(0 123 255 / 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
 }
 
 .pagination-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+  box-shadow: none;
+  color: #666;
 }
 
-.pagination-button:hover:not(:disabled) {
+.pagination-button:hover:not(:disabled),
+.pagination-button:focus:not(:disabled) {
   background-color: #0056b3;
+  box-shadow: 0 6px 15px rgb(0 86 179 / 0.8);
+  outline: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-settings-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .saved-posts {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+   .btn-remove {
+    width: auto; /* Reset to auto */
+    text-align: center;
+  }
 }

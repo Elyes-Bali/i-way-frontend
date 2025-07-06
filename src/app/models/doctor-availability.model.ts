@@ -4,5 +4,9 @@ export interface DoctorAvailability {
     dayOfWeek: string;
     startTime: string;
     endTime: string;
+    secondTime:string;
+    secondendTime: string;
+    thirdTime: string;
+    thirdendTime: string;
   }
   

@@ -30,7 +30,7 @@
           </div>
           <div *ngIf="editingPostId !== post.id">
             <!-- Display Post Content -->
-            <p>{{ post.showFullContent ? post.content : post.content | slice: 0:150 }}...</p>
+            <p>{{ post.showFullContent ? post.content : post.content | slice: 0:1100 }}...</p>
             <div class="post-button">
               <button class="btn btn-primary" (click)="post.showFullContent = !post.showFullContent">
                 {{ post.showFullContent ? 'Show Less' : 'Read More' }}

@@ -1,10 +1,12 @@
 /* General Layout */
 .profile-settings-container {
   display: flex;
-  align-items: flex-start;
-  background: linear-gradient(135deg, #ffffff, #f4f7fc);
+  gap: 40px;
+  background: linear-gradient(135deg, #e0f2fe, #bae6fd);
   min-height: 100vh;
-  padding: 20px;
+  padding: 50px 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
 }
 
 /* Sidebar */
@@ -52,6 +54,7 @@
   border-collapse: collapse;
   border-radius: 12px;
   overflow: hidden;
+  font-size: 1.2rem;
 }
 
 .styled-table th {
@@ -192,9 +195,14 @@
   color: #e74c3c;
 }
 
-
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

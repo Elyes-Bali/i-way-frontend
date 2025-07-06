@@ -1,0 +1,302 @@
+.page-layout {
+  width: 100%;       /* Full width of viewport */
+  max-width: none;   /* Remove max-width */
+  margin: 2rem 0;
+  padding: 0 2rem;
+  display: flex;
+  gap: 2rem; /* Slightly bigger gap */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  min-height: 90vh; /* Take most of viewport height */
+  align-items: flex-start;
+}
+
+/* Wider and enhanced sidebars */
+.sidebar {
+  flex: 0 0 260px; /* increased width */
+  background: linear-gradient(135deg, #e3efff, #c9dfff);
+  border-radius: 16px;
+  padding: 2rem 1.8rem;
+  box-shadow: 0 10px 25px rgba(47, 128, 237, 0.18);
+  user-select: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1a2d4d;
+  position: sticky;
+  top: 2rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.sidebar:hover {
+  box-shadow: 0 14px 40px rgba(47, 128, 237, 0.3);
+}
+
+/* Sidebar headers */
+.sidebar h3 {
+  color: #2f80ed;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  font-size: 1.4rem;
+  border-bottom: 3px solid #2f80ed;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+
+/* Sidebar lists */
+.sidebar ul {
+  padding-left: 1.2rem;
+  list-style: disc;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar ul li {
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.sidebar ul li:hover {
+  color: #0e52b5;
+  cursor: default;
+}
+
+/* Sidebar paragraphs */
+.sidebar p {
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: #445566;
+  font-size: 0.95rem;
+  border-left: 3px solid #2f80ed;
+  padding-left: 0.8rem;
+}
+
+/* Container should take the remaining space */
+.container.enhanced-prescription {
+  flex: 1;
+  min-width: 0;
+  /* Keep your existing styles */
+}
+
+
+
+/* Container & background */
+.container.enhanced-prescription {
+  flex: 1;
+  min-width: 0;
+  padding: 3rem 2rem 4rem;
+  background: linear-gradient(135deg, #f9faff 0%, #e8f0ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(47, 128, 237, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  border: 1px solid #cddffa;
+
+  /* Remove width constraints */
+  max-width: none;
+  margin: 0;
+}
+
+
+/* Title */
+.form-title {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #2f80ed;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(47, 128, 237, 0.3);
+}
+
+/* Form layout */
+.prescription-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Labels */
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: block;
+  font-size: 1.1rem;
+  color: #1c2833;
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1.8px solid #97b7eb;
+  background: #f5faff;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #34495e;
+  box-shadow: inset 0 3px 6px rgb(0 0 0 / 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
+}
+
+textarea:focus {
+  border-color: #2f80ed;
+  box-shadow: 0 0 10px rgba(47, 128, 237, 0.5);
+  background: #ffffff;
+  outline: none;
+}
+
+/* Medications section */
+.medication-section h4 {
+  font-size: 1.4rem;
+  color: #2f80ed;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  border-bottom: 3px solid #2f80ed;
+  padding-bottom: 6px;
+  user-select: none;
+}
+
+/* Medication block */
+.medication-block {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.4rem 1.8rem;
+  margin-bottom: 1.3rem;
+  box-shadow: 0 4px 14px rgb(47 128 237 / 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.medication-block:hover {
+  box-shadow: 0 8px 24px rgb(47 128 237 / 0.2);
+  transform: translateY(-3px);
+}
+
+/* Inputs row: side by side on desktop */
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 0.8rem;
+}
+
+.input-row input {
+  flex: 1 1 30%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #b8d0ff;
+  font-size: 1rem;
+  color: #34495e;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
+  box-shadow: inset 0 2px 5px rgb(0 0 0 / 0.05);
+}
+
+.input-row input:focus {
+  border-color: #2f80ed;
+  box-shadow: 0 0 8px rgba(47, 128, 237, 0.45);
+  outline: none;
+}
+
+/* Medication actions (remove button) */
+.medication-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.remove-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* Add medication button */
+.add-btn {
+  background: linear-gradient(135deg, #4286f4, #2f80ed);
+  color: white;
+  padding: 14px 0;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.15rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(47, 128, 237, 0.5);
+  user-select: none;
+}
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #2f80ed, #4286f4);
+  box-shadow: 0 8px 28px rgba(47, 128, 237, 0.75);
+}
+
+/* Submit button */
+.submit-btn {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  color: white;
+  font-weight: 800;
+  padding: 16px 0;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  box-shadow: 0 8px 28px rgba(26, 188, 156, 0.8);
+}
+
+.submit-btn:disabled {
+  background: #9ac5d8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #185a9d, #43cea2);
+  box-shadow: 0 10px 32px rgba(26, 188, 156, 1);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .input-row {
+    flex-direction: column;
+  }
+
+  .input-row input {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    flex: none;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    position: relative;
+    top: auto;
+    box-shadow: 0 6px 18px rgb(47 128 237 / 0.12);
+  }
+  
+  .container.enhanced-prescription {
+    width: 100%;
+    max-width: none;
+  }
+}

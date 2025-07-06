@@ -1,66 +1,72 @@
 .table-container {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Table */
-  .styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  
-  .styled-table th {
-    background: #007bff;
-    color: white;
-    padding: 14px;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  .styled-table td {
-    padding: 14px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  /* Row Hover Effect */
-  .styled-table tbody tr:hover {
-    background: #f1f7ff;
-  }
-  
-  /* Alternating Row Colors */
-  .styled-table tbody tr:nth-child(even) {
-    background: #fafafa;
-  }
-  /* General Layout */
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+ font-size: 1.2rem;
+}
+
+.styled-table th {
+  background: #007bff;
+  color: white;
+  padding: 14px;
+  text-align: left;
+  font-weight: bold;
+
+
+}
+
+.styled-table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+ 
+}
+
+/* Row Hover Effect */
+.styled-table tbody tr:hover {
+  background: #f1f7ff;
+}
+
+/* Alternating Row Colors */
+.styled-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+/* General Layout */
 .profile-settings-container {
-    display: flex;
-    align-items: flex-start;
-    background: #f4f7fc;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  .content {
-    flex: 1;
-    padding: 20px;
-  }
+  display: flex;
+  gap: 40px;
+  background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+  min-height: 100vh;
+  padding: 50px 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
+}
+.content {
+  flex: 1;
+  padding: 20px;
+}
 
-  .header {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #222;
-    padding-bottom: 20px;
-  }
+.header {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+  padding-bottom: 20px;
+}
 
-  .file-btn{
-    background: #3c78e7;
-    color: white;
-  }
+.file-btn {
+  background: #3c78e7;
+  color: white;
+}
 
-  .file-btn:hover{
-    background: #1f55bb;
-    color: white;
-  }
+.file-btn:hover {
+  background: #1f55bb;
+  color: white;
+}

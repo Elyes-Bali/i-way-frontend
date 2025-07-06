@@ -1,0 +1,79 @@
+<div class="page-layout">
+  <aside class="sidebar left-sidebar">
+    <h3>💡 Health Tips</h3>
+    <ul>
+      <li>Take medications as prescribed.</li>
+      <li>Stay hydrated.</li>
+      <li>Report any side effects promptly.</li>
+      <li>Keep a list of your medications handy.</li>
+    </ul>
+  </aside>
+
+<div class="container enhanced-prescription">
+  <h2 class="form-title">📝 Add Prescription</h2>
+
+  <form (ngSubmit)="submitPrescription()" class="prescription-form" novalidate>
+    <div class="form-group">
+      <label for="symptoms">Symptoms</label>
+      <textarea
+        id="symptoms"
+        [(ngModel)]="symptoms"
+        name="symptoms"
+        required
+        placeholder="Describe symptoms..."
+      ></textarea>
+    </div>
+
+    <div class="medication-section">
+      <h4>💊 Medications</h4>
+
+      <div *ngFor="let med of medications; let i = index" class="medication-block">
+        <div class="input-row">
+          <input
+            type="text"
+            [(ngModel)]="med.name"
+            name="name{{i}}"
+            placeholder="Medication Name"
+            required
+          />
+          <input
+            type="text"
+            [(ngModel)]="med.usage"
+            name="usage{{i}}"
+            placeholder="Usage Instructions"
+            required
+          />
+          <input
+            type="text"
+            [(ngModel)]="med.duration"
+            name="duration{{i}}"
+            placeholder="Duration (e.g., 5 days)"
+            required
+          />
+        </div>
+
+        <div class="medication-actions">
+          <button type="button" class="remove-btn" (click)="removeMedication(i)">
+            🗑 Remove
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="add-btn" (click)="addMedication()">
+        ➕ Add Medication
+      </button>
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="!symptoms || medications.length === 0">
+      ✅ Submit Prescription
+    </button>
+  </form>
+</div>
+
+
+  <aside class="sidebar right-sidebar">
+    <h3>🩺 Quick Reminders</h3>
+    <p>"The best doctor gives the least medicine." – Benjamin Franklin</p>
+    <p>Always read the label carefully before taking medication.</p>
+  </aside>
+</div>

@@ -24,17 +24,40 @@ export class MyPatientsComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit() {
-    this.userStorageService.user$.subscribe((user) => {
-      if (user && user.userId) {
-        this.doctorId = user.userId;
-      } else {
-        console.log('No user found or userId is undefined');
-      }
-    });
-    this.loadAppointments();
-    this.getAllPatients();
-  }
+ngOnInit() {
+  this.userStorageService.user$.subscribe((user) => {
+    if (user && user.userId) {
+      this.doctorId = user.userId;
+
+      // Only load data *after* doctorId is set
+      this.loadAppointmentsAndPatients();
+    } else {
+      console.log('No user found or userId is undefined');
+    }
+  });
+}
+
+loadAppointmentsAndPatients() {
+  this.appointmentService.getAppointmentsForDoctor(this.doctorId).subscribe(
+    (data) => {
+      this.appointments = data.reverse();
+      console.log(this.appointments);
+
+      this.authService.getAllPatients().subscribe(
+        (data) => {
+          this.patients = data;
+          console.log(this.patients);
+          this.filterPatientsWithAcceptedAppointments();
+        },
+        (error: any) => {
+          console.error('Failed to retrieve patients:', error);
+        }
+      );
+    },
+    (error) => console.error('Error loading appointments', error)
+  );
+}
+
 
   getAllPatients(): void {
     this.authService.getAllPatients().subscribe(
@@ -50,15 +73,15 @@ export class MyPatientsComponent implements OnInit {
     );
   }
 
-  loadAppointments() {
-    this.appointmentService.getAppointmentsForDoctor(this.doctorId).subscribe(
-      (data) => {
-        this.appointments = data.reverse();
-        console.log(this.appointments);
-      },
-      (error) => console.error('Error loading appointments', error)
-    );
-  }
+  // loadAppointments() {
+  //   this.appointmentService.getAppointmentsForDoctor(this.doctorId).subscribe(
+  //     (data) => {
+  //       this.appointments = data.reverse();
+  //       console.log(this.appointments);
+  //     },
+  //     (error) => console.error('Error loading appointments', error)
+  //   );
+  // }
 
   filterPatientsWithAcceptedAppointments() {
     // Get all accepted appointment IDs as strings
@@ -81,4 +104,10 @@ export class MyPatientsComponent implements OnInit {
   navigateToMedicalFile(patientId: number) {
     this.router.navigate(['/medical-file', patientId, this.doctorId]);
   }
+  navigateToPrescription(patientId: number) {
+  this.router.navigate(['/add-prescription', patientId, this.doctorId]);
+}
+  navigateToDoctorPrescriptions(patientId: number) {
+    this.router.navigate(['/my-prescriptions', patientId]);}
+
 }

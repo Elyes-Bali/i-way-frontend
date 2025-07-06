@@ -29,6 +29,12 @@ import { ChartsComponent } from './admin/charts/charts.component';
 import { PharmacySignupComponent } from './pharmacy-signup/pharmacy-signup.component';
 import { AllPharmaciesComponent } from './admin/all-pharmacies/all-pharmacies.component';
 import { SearchPrescriptionsComponent } from './pharmacy/search-prescriptions/search-prescriptions.component';
+import { AddPrescriptionComponent } from './add-prescription/add-prescription.component';
+import { DoctorPrescriptionsComponent } from './doctor-prescriptions/doctor-prescriptions.component';
+import { EditPrescriptionComponent } from './edit-prescription/edit-prescription.component';
+import { MyPrescriptionsComponent } from './patient/my-prescriptions/my-prescriptions.component';
+import { LabInterpreterComponent } from './patient/lab-interpreter/lab-interpreter.component';
+import { TestCodesComponent } from './test-codes/test-codes.component';
 
 
 
@@ -61,7 +67,11 @@ const routes: Routes = [
   { path: 'chatting', component: RealTimeChatComponent },
   { path: 'charts', component: ChartsComponent },
   { path: 'pharmacy/prescription', component: SearchPrescriptionsComponent },
-
+  { path: 'add-prescription/:patientId/:doctorId', component: AddPrescriptionComponent },
+  { path: 'my-prescriptions/:patientId', component: DoctorPrescriptionsComponent },
+  { path: 'edit-prescription/:id', component: EditPrescriptionComponent },
+  { path: 'Patient-prescriptions', component: MyPrescriptionsComponent },
+  { path: 'HealLink-Ai-lab-interpreter', component: LabInterpreterComponent },
 
 
   {
@@ -69,6 +79,7 @@ const routes: Routes = [
     component: PatientAppointmentsComponent,
   },
   { path: 'aboutus', component: AboutComponent },
+  // { path: 'test', component: TestCodesComponent },
 ];
 
 @NgModule({

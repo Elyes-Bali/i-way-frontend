@@ -1,0 +1,47 @@
+<footer class="footer bg-dark text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- About -->
+      <div class="col-md-4">
+        <h2 class="fw-bold mb-3">About HealLink</h2>
+        <p class="small ">
+          HealLink is your trusted platform to book appointments with top doctors,
+          schedule treatments, and manage your health—all in one place.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-4">
+        <h2 class="fw-bold mb-3">Quick Links</h2>
+        <ul class="list-unstyled small">
+          <li><a href="/">🏠 Home</a></li>
+          <li *ngIf="isPatientLoggedIn || isDoctorLoggedIn || isPharmacyLoggedIn"><a href="/community">👥 Community</a></li>
+          <li *ngIf="isPatientLoggedIn"><a href="/all-Doctors">🩺 Our Doctors</a></li>
+          <li *ngIf="isPatientLoggedIn || isDoctorLoggedIn"><a href="/chat">🤖 AI Assistant</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact & Social -->
+      <div class="col-md-4">
+        <h2 class="fw-bold mb-3">Contact Us</h2>
+        <p class="small mb-2">
+          📍 123 Health St.<br>
+          🏙 Tunis, Tunisia<br>
+          📧 <a href="mailto:support@heallink.com">support&#64;heallink.com</a><br>
+          📞 +216 00 000 000
+        </p>
+        <div class="social-icons d-flex gap-3 mt-3">
+          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4 border-light-subtle">
+    <div class="text-center small text-light-emphasis">
+      &copy; 2025 HealLink Team. All rights reserved.
+    </div>
+  </div>
+</footer>

@@ -1,297 +1,430 @@
-/* General Body Style */
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.page-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(
+    to right,
+    #e3f2fd,
+    #bbdefb
+  ); /* Soothing blue gradient */
+  padding-top: 80px; /* For navbar space if needed */
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #f0faff, #e8f0ff);
+}
+
+/* Layout container */
 .body {
-    background-size: 10%;
-    background-repeat: repeat;
-    background-position: top left;
-    background-attachment: fixed;
-    font-family: 'Arial', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center; /* Align to the left to accommodate sidebar */
-    align-items: flex-start;
-    flex-direction: row; /* Align elements horizontally (sidebar + main content) */
-    padding: 20px;
-    box-sizing: border-box; /* Ensure padding is considered in width/height calculations */
-    margin-top: 60px; /* Adjust this if your navbar height changes */
+  display: flex;
+  gap: 20px;
+  padding: 100px 20px 40px 20px; /* padding-top accommodates navbar */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-/* Sidebar Style */
+/* Sidebar */
 .sidebar {
-    position: fixed;
-    top: 70px; /* Adjust this to match the navbar height */
-    left: 0;
-    height: calc(100vh - 70px); /* Adjust to fit below navbar */
-    width: 500px;
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 1; /* Set lower z-index to ensure the sidebar is behind the navbar */
-    overflow-y: auto; /* Allow scrolling if content exceeds the sidebar height */
+  flex: 0 0 320px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+@media (min-width: 993px) {
+  .sidebar {
+    position: sticky;
+    top: 80px;
+  }
 }
 
-/* Sidebar Card */
 .sidebar-card {
-    text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.1);
-    height: calc(90vh - 70px);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .sidebar-image {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    margin-bottom: 15px;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 15px;
 }
 
-.sidebar h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #007bff;
-}
-
-.sidebar p {
-    font-size: 14px;
-    color: #555;
-}
-
-/* Main Content Style */
-.main-content {
-    margin-left: 500px; /* Adjust to leave space for the fixed sidebar */
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    width: calc(100% - 500px); /* Adjust width to account for the sidebar */
-    padding: 20px;
-}
-
-/* Prescription Container */
-.prescription-container {
-    display: flex;
-    justify-content: center;
-    margin-top: -60px;
-}
-
-.prescription-card {
-    width: 700px;
-    padding: 30px;
-    border: 3px solid #007bff;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.3);
-    font-family: 'Arial', sans-serif;
-    position: relative;
-}
-
-.prescription-header {
-    text-align: center;
-    background: linear-gradient(135deg, #007bff, #004a99);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.prescription-title {
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 20px;
-    color: #007bff;
-    border-bottom: 3px solid #007bff;
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-.patient-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.separator {
-    width: 100%;
-    height: 2px;
-    background-color: #007bff;
-    margin: 15px 0;
-}
-
-.rx-label {
-    font-size: 22px;
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 10px;
-}
-
-.prescription-text {
-    font-size: 18px;
-    padding: 15px;
-    border: 2px dashed #007bff;
-    background: #f9f9f9;
-    border-radius: 10px;
-    min-height: 70px;
-    color: #333;
-}
-
-.symptoms-text {
-    font-size: 20px;
-}
-
-.doctor-signature {
-    text-align: right;
-    margin-top: 30px;
-}
-
-.signature-image {
-    width: 150px;
-    height: auto;
-    margin-top: 10px;
-}
-
-.prescription-footer {
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-    margin-top: 15px;
-    padding: 10px;
-    background: #f1f1f1;
-    border-radius: 5px;
-}
-
-.navigation-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.nav-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-}
-
-.nav-button:hover {
-    background-color: #0056b3;
-}
-
-.nav-button:disabled {
-    background-color: #aaa;
-    cursor: not-allowed;
-}
-
-.no-prescriptions {
-    text-align: center;
-    font-size: 1.8em;
-    color: #555;
-    margin-top: 50px;
-    padding: 25px;
-    background: linear-gradient(135deg, #f3f3f3, #e1e1e1);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    font-weight: bold;
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Search Container Style */
 .search-container {
-    margin: 20px 0;
+  margin-top: 20px;
 }
 
 #searchCode {
-    padding: 10px;
-    width: 300px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #007bff;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #007bff;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    /* Sidebar becomes collapsed on smaller screens */
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative; /* Sidebar moves down */
-        top: 0; /* Remove fixed positioning */
-        padding: 15px;
-    }
-
-    /* Adjust the main content area */
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .sidebar-card {
-        text-align: left;
-        margin: 10px 0;
-    }
-
-    /* Adjust the prescription card width */
-    .prescription-card {
-        width: 100%;
-    }
+/* Main content */
+.main-content {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 60%; /* Increase width */
+  padding: 30px;
+  transform: none;
+}
+@media (max-width: 992px) {
+  .sidebar,
+  .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+.prescription-card {
+  overflow-x: auto;
 }
 
-@media (max-width: 480px) {
-    /* For very small screens, adjust further */
-    .sidebar {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .prescription-card {
-        padding: 15px;
-    }
+.prescription-container {
+  width: 100%;
 }
 
-.action-buttons {
-    margin-top: 20px;
+.prescription-card {
+  background-color: #fff;
+  border: 3px solid #007bff;
+  border-radius: 15px;
+  padding: 40px;
+  font-size: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.prescription-header {
+  background: linear-gradient(135deg, #007bff, #004a99);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.prescription-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.patient-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.separator {
+  height: 2px;
+  background-color: #007bff;
+  margin: 15px 0;
+}
+
+.rx-label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.prescription-text {
+  background-color: #f1f9ff;
+  border: 2px dashed #007bff;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.medications-list{
+    padding-left: 2%;
+}
+.med-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.med-name {
+  font-weight: bold;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-outline-success {
+  border: 1px solid #28a745;
+  background: transparent;
+  color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.symptoms-text {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.doctor-signature {
+  text-align: right;
+  margin-top: 25px;
+}
+
+.signature-image {
+  width: 150px;
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.prescription-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  color: #555;
+}
+
+.availablitily-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
+}
+
+.alert-warning {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.no-prescriptions {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 50px;
+  background: linear-gradient(to right, #f9f9f9, #e9e9e9);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 992px) {
+  .body {
+    flex-direction: column;
+    padding: 90px 15px;
+    gap: 30px;
+  }
+
+  .sidebar,
+  .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px;
+  }
+
+  .main-content {
+    transform: none;
+  }
+
+  .alternative-search {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .patient-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .doctor-warning {
+    max-width: 100%;
     text-align: center;
+  }
+}
 
+.prescription-card {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .bttn-close {
-    background-color: #ff1900;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 90px;
-    height: 60px;
+}
+.branding-footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #888;
+  font-size: 0.9rem;
+}
+.page-heading {
+  font-size: 32px;
+  font-weight: bold;
+  color: #004a99;
+  margin-bottom: 25px;
+  text-align: center;
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeInSlide 1s ease forwards;
+}
+
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .bttn-close:disabled {
-    background-color: gray;
-    color: rgb(255, 255, 255);
-    cursor: not-allowed;
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  .closed-message {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    font-weight: bold;
-    border: 1px solid #c3e6cb;
-    text-align: center;
+}
+.alternative-search {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.alternative-search input[type="text"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  width: 250px;
+  transition: border-color 0.3s ease;
+}
+
+.alternative-search input[type="text"]:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px #0056b3;
+}
+
+.alternative-search button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.alternative-search button:hover {
+  background-color: #0056b3;
+}
+
+.Pharmacy-Search {
+  color: #004a99;
+  text-align: center;
+  margin-top: 30px;
+}
+
+pre {
+  background-color: #f1f9ff;
+  border: 1px solid #007bff;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 10px auto;
+  white-space: pre-wrap; /* Wrap long text */
+  font-size: 16px;
+  color: #333;
+}
+/* Loader spinner - simple CSS spinner */
+.loader {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
+}
+.doctor-warning {
+  margin-top: 10px;
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 10px 15px;
+  border-left: 5px solid #ffc107;
+  border-radius: 5px;
+  font-size: 14px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}

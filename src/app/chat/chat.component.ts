@@ -151,7 +151,7 @@ export class ChatComponent {
           ) {
             const botMessage = {
               sender: 'bot',
-              text: "I don't have an answer. Do you want to contact an agent? (Type 'yes' to proceed, 'no' to continue chatting)",
+              text: " As an AI designed for medical assistance, I am not knowledgeable about this Topic. Do you want to contact an agent? (Type 'yes' to proceed, 'no' to continue chatting)",
               time,
             };
 
