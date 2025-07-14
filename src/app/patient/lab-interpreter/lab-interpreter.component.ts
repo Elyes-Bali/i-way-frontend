@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lab-interpreter',
@@ -24,7 +25,7 @@ interpretation: string = '';
     this.interpretation = '';
     this.error = '';
 
-    this.http.post<any>('http://localhost:5000/interpret-lab', formData)
+    this.http.post<any>(`${environment.apiAiUrl}/interpret-lab`, formData)
       .subscribe({
         next: res => {
           this.interpretation = res.interpretation;

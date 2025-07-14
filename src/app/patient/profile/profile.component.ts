@@ -16,17 +16,24 @@ export class ProfileComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
-  constructor(private reclamationService: ReclamationsService) {
+  constructor(private reclamationService: ReclamationsService,private userStorageService: UserStorageService) {
     this.isPatientLoggedIn = UserStorageService.isPatientLoggedIn();
-    if (this.isPatientLoggedIn) {
-      const user = UserStorageService.getUser();
-      this.currentUser = user.userId;
-      console.log('Current User ID:', this.currentUser);
-    }
+    // if (this.isPatientLoggedIn) {
+    //   const user = UserStorageService.getUser();
+    //   this.currentUser = user.userId;
+    //   console.log('Current User ID:', this.currentUser);
+    // }
   }
 
   ngOnInit(): void {
+    this.userStorageService.user$.subscribe((user) => {
+    if (user && user.userId) {
+      this.currentUser = user.userId;
     this.loadReclamations();
+    } else {
+      console.log('No user found or userId is undefined');
+    }
+  });
   }
 
   loadReclamations() {

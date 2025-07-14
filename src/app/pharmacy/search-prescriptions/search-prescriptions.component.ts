@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { MedicalFileService } from 'src/app/services/medicalFile/medical-file.service';
 import { PrescriptionsService } from 'src/app/services/prescriptions/prescriptions.service';
 import { UserStorageService } from 'src/app/services/storage/user-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-search-prescriptions',
@@ -132,7 +133,7 @@ export class SearchPrescriptionsComponent implements OnInit {
     if (!this.medicationName.trim()) return;
  this.loading = true;
     // Directly call the backend API URL here
-    const apiUrl = 'http://localhost:5000/get-alternatives'; // Adjust URL if needed
+    const apiUrl = `${environment.apiAiUrl}/get-alternatives`; // Adjust URL if needed
 
     this.http.post<{ alternatives: string }>(apiUrl, { medication: this.medicationName }).subscribe({
       next: (res) => {

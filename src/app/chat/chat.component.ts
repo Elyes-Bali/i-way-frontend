@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { UserStorageService } from '../services/storage/user-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chat',
@@ -118,7 +119,7 @@ export class ChatComponent {
     const time = new Date().toLocaleTimeString();
 
     this.http
-      .post<{ response: string }>('http://localhost:5000/get', {
+      .post<{ response: string }>(`${environment.apiAiUrl}/get`, {
         msg: userInput,
         name: this.currentName,
       })
@@ -197,7 +198,7 @@ export class ChatComponent {
         .join('\n');
 
       this.http
-        .post('http://localhost:8080/reclamations/save', {
+        .post(`${environment.apiBaseUrl}/reclamations/save`, {
           description: `Unanswered question: ${this.lastUnansweredQuestion}\n\nFull Conversation:\n${conversation}`,
           ownerId: user ? user.userId : null,
           email: this.currentUser,

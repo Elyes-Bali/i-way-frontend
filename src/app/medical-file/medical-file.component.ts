@@ -5,6 +5,7 @@ import { MedicalFileService } from '../services/medicalFile/medical-file.service
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -114,7 +115,7 @@ export class MedicalFileComponent implements OnInit{
   // }
 
   predictDisease(symptoms: string) {
-  this.http.post<{ prediction: string }>('http://localhost:5000/predict-disease', {
+  this.http.post<{ prediction: string }>(`${environment.apiAiUrl}/predict-disease`, {
     symptoms: symptoms
   }).subscribe({
     next: (res) => this.predictedDisease = res.prediction,

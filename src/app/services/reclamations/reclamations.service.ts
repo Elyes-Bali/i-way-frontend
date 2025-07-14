@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Reclamations } from 'src/app/models/ReclamationsM';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReclamationsService {
-  readonly RECLAMATION_API_URL = 'http://localhost:8080/reclamations/';
+  readonly RECLAMATION_API_URL = `${environment.apiBaseUrl}/reclamations/`;
   constructor(private httpclient: HttpClient) {}
 
   getAllReclamations() {
@@ -18,7 +19,7 @@ export class ReclamationsService {
 
   editReclamation(id: number, reclamation: Reclamations) {
     const url =
-      this.RECLAMATION_API_URL + 'updaterec/' + reclamation.idReclamation; // Assuming there's an "id" property in the Product object
+      this.RECLAMATION_API_URL + 'updaterec/' + reclamation.idReclamation; 
     return this.httpclient.put(url, reclamation);
   }
   deleteReclamation(id: number): Observable<void> {

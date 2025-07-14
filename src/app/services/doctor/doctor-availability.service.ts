@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DoctorAvailability } from 'src/app/models/doctor-availability.model';
+import { environment } from 'src/environments/environment';
 
-const API_URL = "http://localhost:8080/availability/";
+const API_URL = `${environment.apiBaseUrl}/availability/`;
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorAvailabilityService {
-  readonly APP_API_URL = 'http://localhost:8080/availability/';
+  readonly APP_API_URL = `${environment.apiBaseUrl}/availability/`;
   constructor(private http: HttpClient) {}
 
   addAvailability(availabilities: DoctorAvailability[], headers: HttpHeaders, doctorId: number): Observable<any> {
