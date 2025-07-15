@@ -22,9 +22,13 @@ export class DoctorAvailabilityService {
   getDoctorAvailability(doctorId: number): Observable<DoctorAvailability[]> {
     return this.http.get<DoctorAvailability[]>(`${API_URL}get/${doctorId}`);
   }
+  // getAllDoctorAvailabilities(): Observable<any[]> {
+  //   return this.http.get<any[]>(`http://localhost:8080/availability/doctors`);
+  // }
   getAllDoctorAvailabilities(): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/availability/doctors`);
-  }
+  return this.http.get<any[]>(`${API_URL}doctors`);
+}
+
 
   deleteAvailabilitie(id: number): Observable<void> {
     const url = `${this. APP_API_URL}deletapp/${id}`;
