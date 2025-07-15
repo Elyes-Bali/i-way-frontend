@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChatMessage } from '../models/chatMessages.model';
 import { AppointmentsService } from '../services/appointments/appointments.service';
 import { Appointment } from '../models/appointment.model';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-real-time-chat',
   templateUrl: './real-time-chat.component.html',
@@ -163,7 +163,7 @@ export class RealTimeChatComponent implements OnInit {
     if (this.receiverId) {
       this.httpClient
         .post<ChatMessage[]>(
-          `http://localhost:8080/chat/history`,
+          `${environment.apiBaseUrl}/chat/history`,
           `${this.senderId}:${this.receiverId}`
         )
         .subscribe(
@@ -178,7 +178,7 @@ export class RealTimeChatComponent implements OnInit {
 
   deleteMessage(messageId: number) {
     this.httpClient
-      .delete(`http://localhost:8080/chat/message/${messageId}`, {
+      .delete(`${environment.apiBaseUrl}/chat/message/${messageId}`, {
         responseType: 'text' as 'json',
       })
       .subscribe(
