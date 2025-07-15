@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SavedPostService {
-  private apiUrl = `${environment.apiBaseUrl}/saved-posts/`;
+  private apiUrl = `${environment.apiBaseUrl}/saved-posts`;
 
   constructor(private http: HttpClient) {}
 
