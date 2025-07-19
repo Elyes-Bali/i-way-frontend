@@ -1,20 +1,20 @@
 <div class="main-content">
   <div id="page-content-wrapper">
     <div class="row my-3">
-      <h3 class="fs-4 mb-3 text-white text-center">Reclamations List</h3>
+      <h3 class="fs-4 mb-3 text-white text-center">Complaints List</h3>
 
       <div class="col container">
         
         <input
           type="text"
           [(ngModel)]="searchTerm"
-          placeholder="Search For a Reclamation"
+          placeholder="Search For a Complaints"
           class="search-input mb-2"
         />
 
         <!-- Show this message if no reclamations are available -->
         <div *ngIf="!filteredRecs || filteredRecs.length === 0">
-          <p class="text-center text-muted">No reclamations available.</p>
+          <p class="text-center text-muted">No Complaints available.</p>
         </div>
 
         <!-- Show the table if reclamations exist -->

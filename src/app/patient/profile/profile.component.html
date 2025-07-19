@@ -2,12 +2,12 @@
   <app-doc-sidebar></app-doc-sidebar>
   <div class="profile-content-wrapper">
   <div class="profile-container">
-    <h3>My Reclamations</h3>
+    <h3>My Complaints</h3>
 
     <div *ngIf="filteredRecs.length > 0; else noRecs">
       <div class="reclamation-grid">
         <div class="reclamation-card" *ngFor="let rec of paginatedRecs">
-          <p><strong>Reclamation:</strong> {{ rec.description }}</p>
+          <p><strong>Complaint:</strong> {{ rec.description }}</p>
           <p><strong>Answer:</strong> {{ rec.answer || 'No answer yet' }}</p>
         </div>
       </div>
@@ -21,7 +21,7 @@
     </div>
 
     <ng-template #noRecs>
-      <p>No reclamations found.</p>
+      <p>No Complaints found.</p>
     </ng-template>
   </div>
   </div>
