@@ -5,15 +5,15 @@ services:
     build: .
     container_name: frontend-app
     ports:
-      - 80:80
+      - 4200:80
     restart: always
 
   nginx:
     image: nginx:latest
     container_name: nginx
     ports:
-      - "8080:80"   # HTTP (for ACME challenge)
-      - "8443:443" # HTTPS
+      - "80:80"   # HTTP (for ACME challenge)
+      - "443:443" # HTTPS
     volumes:
       - ./nginx/custom.conf:/etc/nginx/nginx.conf
       - ./certbot/conf:/etc/letsencrypt
