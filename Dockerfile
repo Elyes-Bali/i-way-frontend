@@ -10,5 +10,7 @@ RUN npm run build -- --output-path=./dist/out
 FROM nginx:1.28-alpine as runtime
 COPY --from=builder /app/dist/out /usr/share/nginx/html
 COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
+COPY certs/HealLink.crt /etc/nginx/ssl/HealLink.crt
+COPY certs/HealLink.key /etc/nginx/ssl/HealLink.key
+EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
