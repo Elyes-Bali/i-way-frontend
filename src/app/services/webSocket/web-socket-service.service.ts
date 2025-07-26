@@ -16,9 +16,9 @@ export class WebSocketServiceService {
   }
 
   private connect() {
-    // const socket = new SockJS(`${environment.apiBaseUrl}/ws`);
+     const socket = new SockJS(`${environment.apiBaseUrl}/ws`);
     //const socket = new SockJS(`${window.location.protocol}//${window.location.host}/ws`);
-    const socket = new SockJS(`/ws`);
+   // const socket = new SockJS(`/ws`);
 
     this.stompClient = Stomp.over(socket);
   
